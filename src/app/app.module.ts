@@ -11,6 +11,8 @@ import { QuoteComponent } from './components/quote/quote.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { StartContentComponent } from './components/start-content/start-content.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { StartContentComponent } from './components/start-content/start-content.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
