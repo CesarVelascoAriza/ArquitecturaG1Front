@@ -1,16 +1,14 @@
-import { tipoDocumento } from "./tipoDocumento";
+import { TipoDocumento } from "./tipo-documento";
 
-export class usuarios{
-
-    numeroDocumento:number|undefined|null;
-    tipo?: tipoDocumento|undefined|null;
-    nombre?:string|undefined|null;
-    apellido:string|undefined|null;
-    direccion:string|undefined|null;
-    correo:string|undefined|null;
-    telefono:string|undefined|null;
-    usuario:string|undefined|null;
-    contrasenia:string|undefined|null;
+export class Usuarios {
+    numeroDocumento:number=0;
+    tipo: TipoDocumento =new TipoDocumento();
+    nombre:string="";
+    apellido:string="";
+    direccion:string="";
+    correo:string="";
+    telefono:string="";
+    usuario:string="";
+    contrasenia:string="";
     enabled:boolean=true;
-
 }
