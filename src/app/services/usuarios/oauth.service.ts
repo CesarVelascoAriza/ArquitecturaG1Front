@@ -5,5 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export class OauthService {
 
-  constructor() { }
+  constructor() { /* TODO document why this constructor is empty */  }
 }

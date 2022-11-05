@@ -30,7 +30,9 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
     LoginComponent,
     ContenidoComponent,
     CarruselComponent,
-    CosultarEnvioComponent
+    CosultarEnvioComponent,
+    ConsultarTarifasComponent,
+    NosotrosComponent
   ]
 })
 export class HomeModule { }

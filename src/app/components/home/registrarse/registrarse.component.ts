@@ -32,6 +32,8 @@ export class RegistrarseComponent implements OnInit {
   { }
 
   ngOnInit(): void {
+    // TODO document why this method 'ngOnInit' is empty
+  
   }
 
   onSubmit(){

@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 export class TiposDocumentosService {
 
   
-  constructor() { }
+  constructor() { /* TODO document why this constructor is empty */  }
 }
