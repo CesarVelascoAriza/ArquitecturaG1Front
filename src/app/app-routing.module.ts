@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "consultarEnvio", component: CosultarEnvioComponent },
   { path: "consultartarifa",component:ConsultarTarifasComponent},
-  { path: "nosotros",component:NosotrosComponent}
+  { path: "nosotros",component:NosotrosComponent},
+  { path: "empleado",  loadChildren: () => import('./components/empleado/empleado.module').then(m => m.EmpleadoModule) }
 
 ];
 

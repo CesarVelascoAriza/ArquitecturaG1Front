@@ -1,0 +1,211 @@
+<div class="card">
+    <div class="card-header">
+        {{titulo}}
+    </div>
+    <div class="card-body">
+        <div class="text-start">
+            <button type="button" class="btn btn-outline-primary" routerLink="/empleado/envios">Volver</button>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="row g-3"  [formGroup]="formEnvio"  (ngSubmit)="onSubmit()"> 
+
+                    <h3>Datos de usuario que envia</h3>
+                    <div class="col-md-3">
+                        <label for="tipo" class="form-label">Tipo Documento</label>
+                        <select id="tipo" class="form-select" formControlName="tipo" formControlName="tipoEmi">
+                            <option *ngFor="let list of tipoDoc" value="{{list.id}}">{{list.descripcion}} 
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="usuarioEmisor" class="form-label">Numero de documento</label>
+                        <input type="number" class="form-control" name="usuarioEmisor" id="usuarioEmisor" formControlName="documentoEmi">
+                        <div *ngIf="documentoEmis.invalid && (documentoEmis.dirty ||documentoEmis.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="documentoEmis.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="nombreEmisor" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombreEmisor" id="nombreEmisor" formControlName="nombreEmi">
+                        <div *ngIf="nombreEmi.invalid && (nombreEmi.dirty ||nombreEmi.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="documentoEmis.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="apellidoEmisor" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" name="apellidoEmisor" id="apellidoEmisor" formControlName="apellidoEmi" >
+                        <div *ngIf="apellidoEmi.invalid && (apellidoEmi.dirty ||apellidoEmi.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="apellidoEmi.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="direccionEmisor" class="form-label">direccion</label>
+                        <input type="text" class="form-control" name="direccionEmisor" id="direccionEmisor" formControlName="dirEmi">
+                        <div *ngIf="dirEmi.invalid && (dirEmi.dirty ||dirEmi.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="dirEmi.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="correoEmisor" class="form-label">Correo</label>
+                        <input type="email" class="form-control" name="correoEmisor" id="correoEmisor" formControlName="emailEmi">
+                        <div *ngIf="correomi.invalid && (correomi.dirty ||correomi.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="correomi.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="telefonoEmisor" class="form-label">telefono</label>
+                        <input type="tel" class="form-control" name="telefonoEmisor" id="telefonoEmisor" formControlName="telEmi">
+                        <div *ngIf="telEmi.invalid && (telEmi.dirty ||telEmi.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="telEmi.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <h3>Datos de usuario que Recibe</h3>
+                    <div class="col-md-3">
+                        <label for="tipo" class="form-label">Tipo Documento</label>
+                        <select id="tipo" class="form-select" formControlName="tipo" formControlName="tipoRec">
+                            <option *ngFor="let list of tipoDoc" value="{{list.id}}">{{list.descripcion}} 
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="usuarioReceptor" class="form-label">Numero de documento</label>
+                        <input type="number" class="form-control" name="usuarioReceptor" id="usuarioReceptor" formControlName="documentoRec">
+                        <div *ngIf="documentoRec.invalid && (documentoRec.dirty ||documentoRec.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="documentoRec.errors?.['required']"  class="alert alert-danger">
+                                El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="nombreReceptor" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombreReceptor" id="nombreReceptor" formControlName="nombreRec">
+                        <div *ngIf="nombreRec.invalid && (nombreRec.dirty ||telEmi.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="nombreRec.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="apellidoReceptor" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" name="apellidoReceptor" id="apellidoReceptor" formControlName="apellidoRec">
+                        <div *ngIf="apellidoRec.invalid && (apellidoRec.dirty ||apellidoRec.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="apellidoRec.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="direccionReceptor" class="form-label">direccion</label>
+                        <input type="text" class="form-control" name="direccionReceptor" id="direccionReceptor" formControlName="dirRec">
+                        <div *ngIf="dirRec.invalid && (dirRec.dirty ||dirRec.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="dirRec.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="correoReceptor" class="form-label">Correo</label>
+                        <input type="email" class="form-control" name="correoReceptor" id="correoReceptor" formControlName="emailRec">
+                        <div *ngIf="emailRec.invalid && (emailRec.dirty ||emailRec.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="emailRec.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="telefonoReceptor" class="form-label">telefono</label>
+                        <input type="tel" class="form-control" name="telefonoReceptor" id="telefonoReceptor" formControlName="telRec">
+                        <div *ngIf="telRec.invalid && (telRec.dirty ||telRec.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="telRec.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <h3>Datos del envio </h3>
+                    <div class="col-md-6">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" name="descripcion" id="descripcion" formControlName="descripcionEnvio">
+                        <div *ngIf="descripcion.invalid && (descripcion.dirty ||descripcion.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="telEmi.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="peso" class="form-label">Peso</label>
+                        <input type="text" class="form-control"  name="peso" id="peso" formControlName="peso">
+                        <div *ngIf="peso.invalid && (peso.dirty ||peso.touched )" class="alert alert-danger">
+                                   
+                            <div *ngIf="peso.errors?.['required']"  class="alert alert-danger">
+                               El campo es requerido
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo" class="form-label">Calcular</label>
+                        <button class=" form-control btn btn-primary" (click)="calcularPeso()">Carlcular</button>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo" class="form-label">Ciudad de Origen</label>
+                        <select id="tipo" class="form-select" formControlName="tipo"  formControlName="ciudadOrg">
+                            <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.ciudad}} 
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipo" class="form-label">Ciudad Destino</label>
+                        <select id="tipo" class="form-select" formControlName="tipo" formControlName="ciudadDes">
+                            <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.ciudad}} 
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="text" class="form-control" [attr.disabled]="true"  name="precio" id="precio" formControlName="precio">
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!formEnvio.valid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

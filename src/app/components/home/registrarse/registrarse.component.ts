@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TipoDocumento } from 'src/app/models/tipo-documento';
 import { Usuarios } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
 
 @Component({
   selector: 'app-registrarse',
@@ -26,8 +27,8 @@ export class RegistrarseComponent implements OnInit {
   });
 
   constructor(
-    
     private formBuilder: FormBuilder,
+    private userService:UsuarioService
   ) 
   { }
 
@@ -37,6 +38,23 @@ export class RegistrarseComponent implements OnInit {
   }
 
   onSubmit(){
+    let tipo : TipoDocumento = new TipoDocumento();
+    tipo.id=Number(this.formUsuario.get('tipo')?.value)
+    this.usuario.numeroDocumento = Number(this.formUsuario.get('documento')?.value);
+    this.usuario.nombre = this.formUsuario.get('nombre')?.value!
+    this.usuario.apellido = this.formUsuario.get('apellido')?.value!
+    this.usuario.correo = this.formUsuario.get('email')?.value!
+    this.usuario.direccion = this.formUsuario.get('dir')?.value!
+    this.usuario.telefono = this.formUsuario.get('tel')?.value!
+    this.usuario.tipo = tipo;
+    this.usuario.usuario = this.formUsuario.get('usuario')?.value!
+    this.usuario.contrasenia = this.formUsuario.get('contra')?.value!
 
+    this.userService.crear(this.usuario).subscribe(data => {
+      console.log(data)
+      this.formUsuario.reset();
+    }, err => {
+      console.error(err)
+    });
   }
 }

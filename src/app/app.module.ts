@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './components/home/home.module';
 import { LayoutModule } from './layout/layout.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -13,6 +15,8 @@ import { LayoutModule } from './layout/layout.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    
+    HttpClientModule,
     LayoutModule,
     HomeModule
   ],

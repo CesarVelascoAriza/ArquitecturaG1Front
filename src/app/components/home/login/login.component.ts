@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OauthService } from 'src/app/services/usuarios/oauth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private outhService:OauthService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit():void{
-
+    this.outhService.login(this.formLogin.value).subscribe(data=>{
+      this.router.navigate(['/empleado']);
+    })
   }
 }
