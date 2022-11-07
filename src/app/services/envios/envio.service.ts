@@ -26,7 +26,7 @@ export class EnvioService {
   }
 
   actualizar(envio:Envios):Observable<Envios>{
-    return this.http.put<Envios>(this.urlEndPoint,envio,{headers:this.httpHeaders});
+    return this.http.put<Envios>(`${this.urlEndPoint}/${envio.id}`,envio,{headers:this.httpHeaders});
   }
 
   eliminar(id:number):Observable<Envios>{

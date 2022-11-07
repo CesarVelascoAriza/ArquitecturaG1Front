@@ -7,7 +7,7 @@ import { Usuarios } from 'src/app/models/usuarios';
   providedIn: 'root'
 })
 export class OauthService {
-
+  
   private urlEndPoint:string="/api/security/oauth/token";
   private httpHeaders = new HttpHeaders(
     {

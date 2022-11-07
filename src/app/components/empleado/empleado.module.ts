@@ -5,19 +5,24 @@ import {HttpClientModule} from '@angular/common/http';
 import { EmpleadoRoutingModule } from './empleado-routing.module';
 import { EnviosComponent } from './envios/envios.component';
 import { EnviosFormComponent } from './envios-form/envios-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DespachosComponent } from './despachos/despachos.component';
+import { DespachosFormComponent } from './despachos-form/despachos-form.component';
 
 
 @NgModule({
   declarations: [
     EnviosComponent,
-    EnviosFormComponent
+    EnviosFormComponent,
+    DespachosComponent,
+    DespachosFormComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     EmpleadoRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class EmpleadoModule { }

@@ -27,7 +27,7 @@ export class EstadoService {
   }
 
   actualizar(estado:Estado):Observable<Estado>{
-    return this.http.put<Estado>(this.urlEndPoint,estado,{headers:this.httpHeaders});
+    return this.http.put<Estado>(`${this.urlEndPoint}/${estado.id}`,estado,{headers:this.httpHeaders});
   }
 
   eliminar(id:number):Observable<Estado>{

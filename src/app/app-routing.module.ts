@@ -9,13 +9,14 @@ import { RegistrarseComponent } from './components/home/registrarse/registrarse.
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', component: ContenidoComponent },
-  
+  { path: "home", component: ContenidoComponent },
   { path: "registro", component: RegistrarseComponent },
   { path: "login", component: LoginComponent },
   { path: "consultarEnvio", component: CosultarEnvioComponent },
-  { path: "consultartarifa",component:ConsultarTarifasComponent},
-  { path: "nosotros",component:NosotrosComponent},
-  { path: "empleado",  loadChildren: () => import('./components/empleado/empleado.module').then(m => m.EmpleadoModule) }
+  { path: "consultartarifa", component: ConsultarTarifasComponent },
+  { path: "nosotros", component: NosotrosComponent },
+  { path: "empleado", loadChildren: () => import('./components/empleado/empleado.module').then(m => m.EmpleadoModule) },
+  { path: "admin", loadChildren: () => import("./components/admin/admin.module").then(m => m.AdminModule) }
 
 ];
 

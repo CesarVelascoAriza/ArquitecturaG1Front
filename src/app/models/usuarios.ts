@@ -8,7 +8,7 @@ export class Usuarios {
     direccion:string="";
     correo:string="";
     telefono:string="";
-    usuario:string="";
-    contrasenia:string="";
+    usuario:string=null!;
+    contrasenia:string=null!;
     enabled:boolean=true;
 }

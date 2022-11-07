@@ -3,7 +3,7 @@ import { Estado } from "./estado";
 import { Usuarios } from "./usuarios"
 
 export class Envios {
-    id:number=0;
+    id?:number=0;
     fechaCreacion? :string="";
     descripcionEnvio:string="";
     usuarioEmisor:Usuarios = new Usuarios;
@@ -12,4 +12,5 @@ export class Envios {
     ciudadDestino: Ciudad =new Ciudad;
     precio:number =0;
     estado:Estado= new Estado();
+
 }

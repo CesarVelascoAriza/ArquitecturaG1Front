@@ -1,0 +1,26 @@
+<div class="card m-4">
+    <div class="card-header">
+        <p class="text-center">
+            {{titulo}}
+        </p>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Estado</h5>
+        <p class="text-end">
+            <button class="btn btn-outline-secondary" routerLink="/admin/estado" >Volver</button>
+        </p>
+        <p class="card-text">
+        <form #estadoForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3 row">
+                <label for="estado" class="col-sm-2 col-form-label">Nombre Estado</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control-plaintext" placeholder="Estado" id="estado" [(ngModel)]="estados.estado" name="estado" required
+                        #estado="ngModel">
+                    <div></div>
+                </div>
+            </div>
+            <button class="btn btn-outline-secondary" type="submit" [disabled]="!estadoForm.valid">{{boton}}</button>
+        </form>
+
+    </div>
+</div>

@@ -13,6 +13,7 @@ export class RegistrarseComponent implements OnInit {
 
   listTipoDocmento: TipoDocumento[] = [];
   usuario: Usuarios = new Usuarios();
+  error:any
   
   formUsuario = this.formBuilder.group({
     tipo: [this.usuario.tipo, Validators.required],
@@ -51,10 +52,9 @@ export class RegistrarseComponent implements OnInit {
     this.usuario.contrasenia = this.formUsuario.get('contra')?.value!
 
     this.userService.crear(this.usuario).subscribe(data => {
-      console.log(data)
       this.formUsuario.reset();
     }, err => {
-      console.error(err)
+      this.error =err
     });
   }
 }
