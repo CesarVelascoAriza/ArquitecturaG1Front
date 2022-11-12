@@ -15,6 +15,7 @@ import { EstadosFormComponent } from './estados-form/estados-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
+import {MatPaginatorModule} from'@angular/material/paginator'
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
   ]
 })
 export class AdminModule { }

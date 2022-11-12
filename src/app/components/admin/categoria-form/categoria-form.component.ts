@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Categoria } from 'src/app/models/categoria';
+import { CategoriaService } from 'src/app/services/Categoria/categoria.service';
 
 @Component({
   selector: 'app-categoria-form',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriaFormComponent implements OnInit {
 
-  constructor() { }
+  titulo:string='Crear Categoria';
+  categoria:Categoria=new Categoria();
+
+  constructor(
+    private service:CategoriaService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  crearCat():void{
+
+  }
 }
