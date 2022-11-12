@@ -13,6 +13,7 @@ import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { VehiculoFormComponent } from './vehiculo-form/vehiculo-form.component';
 import { EstadosFormComponent } from './estados-form/estados-form.component';
 import { FormsModule } from '@angular/forms';
+import {MatPaginatorModule} from'@angular/material/paginator'
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ]
 })
 export class AdminModule { }

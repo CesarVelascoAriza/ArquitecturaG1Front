@@ -1,1 +1,27 @@
-<p>categoria-form works!</p>
+<div class="card">
+    <div class="card-header text-center">
+        {{titulo}}
+    </div>
+    <div class="card-body">
+        <div class="text-end">
+            <button class="btn btn-secundary" routerLink="/admin/categoria">Regresar</button>
+        </div>
+        <div class="row ">
+            <form class="row g-3" #heroForm="ngForm" >
+                <div class="col-6">
+                    <label for="Nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre" id="nombre">
+                </div>
+                <div class="col-6">
+                    <label for="variable" class="form-label">Variable</label>
+                    <input type="text" name="variable" id="variable" [(ngModel)]="categoria.variable.nombre" disabled
+                        value="PESO" class="form-control">
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-secondary" [disabled]="">Guardar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
