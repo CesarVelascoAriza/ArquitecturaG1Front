@@ -1,11 +1,11 @@
-<div class="card mb-5" >
+<div class="card mb-4">
   <div class="card-header">
         Listado de vehiculos
   </div>
   <div class="card-body">
     <h5 class="card-title">Listado</h5>
     <p class="text-end">
-        <button class="btn btn-outline-secondary">Crear vehiculos</button>
+        <button class="btn btn-outline-secondary" routerLink="/admin/vehiculo/form">Crear vehiculos</button>
     </p>
 
     <p>
@@ -21,13 +21,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+            <tr *ngFor="let vehiculo of listaVehiculos">
+              <th scope="row">{{vehiculo.id}}</th>
+              <td>{{vehiculo.placa}}</td>
+              <td>{{vehiculo.marca.marca}}</td>
+              <td>{{vehiculo.medio.medio}}</td>
+              <td><i class="bi bi-pencil-square" [routerLink]="['/admin/vehiculo/form/',vehiculo.id]"></i></td>
+              <td><i class="bi bi-trash-fill" (click)="eliminar(vehiculo)"></i></td>
             </tr>
-           
           </tbody>
         </table>
     

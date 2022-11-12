@@ -13,7 +13,7 @@
                     <h3>Datos de usuario que envia</h3>
                     <div class="col-md-3">
                         <label for="tipo" class="form-label">Tipo Documento</label>
-                        <select id="tipo" class="form-select" [(ngModel)]="envio.usuarioEmisor.tipo"  #tipoEmi="ngModel" required>
+                        <select id="tipo" class="form-select" [(ngModel)]="envio.usuarioEmisor.tipo" name="tipo"  #tipoEmi="ngModel" required>
                             <option value="">Selecione...</option>
                             <option [ngValue]="list" *ngFor="let list of tipoDoc" [value]="list.id">{{list.descripcion}}
                             </option>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="usuarioEmisor" class="form-label">Numero de documento</label>
-                        <input type="number" class="form-control" name="documentoEmis" id="usuarioEmisor"
+                        <input type="number" class="form-control" name="numeroDocumento" id="usuarioEmisor"
                             [(ngModel)]="envio.usuarioEmisor.numeroDocumento" #documentoEmis="ngModel" required>
                         <div [hidden]="documentoEmis.valid || documentoEmis.pristine" class="alert alert-danger">
                             El campo es requerido

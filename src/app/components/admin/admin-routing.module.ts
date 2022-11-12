@@ -16,7 +16,7 @@ const routes: Routes = [
     path: "",
     children: [
       { path: "oficina", component: OficinasComponent },
-      { path: "oficina/form", component: OficinasComponent },
+      { path: "oficina/form", component: OficinasFormComponent },
       { path: "oficina/form/:id", component: OficinasFormComponent },
       { path: "estado", component: EstadosComponent },
       { path: "estado/form", component: EstadosFormComponent },
@@ -29,6 +29,9 @@ const routes: Routes = [
       { path: "vehiculo", component: VehiculoComponent },
       { path: "vehiculo/form", component: VehiculoFormComponent },
       { path: "vehiculo/form/:id", component: VehiculoFormComponent },
+      { path: "usuario", component: VehiculoComponent },
+      { path: "usuario/form", component: VehiculoFormComponent },
+      { path: "usuarios/form/:id", component: VehiculoFormComponent },
       { path: "**", redirectTo: "oficina" }
     ]
   }

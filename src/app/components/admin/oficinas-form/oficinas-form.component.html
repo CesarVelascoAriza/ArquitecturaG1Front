@@ -1,1 +1,27 @@
-<p>oficinas-form works!</p>
+<div class="card" >
+  <div class="card-header text-center">
+    {{titulo}}
+  </div>
+  <div class="card-body">
+    <p class="col-md-12">
+        <form class="row g-3" >
+          <div class="col-md-6">
+            <label for="Nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="Nombre" [(ngModel)]="oficina.nombre" name="nombre"  >
+          </div>
+          <div class="col-md-6">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="direccion" [(ngModel)]="oficina.direccion" name="direccion"  >
+          </div>
+    
+          <div class="col-md-6">
+            <label for="Ciudad" class="form-label">Ciudad </label>
+            <select class="form-control" name="marca" id="marca" (change)="seleccionarCiudad($event)"   required>
+                <option *ngFor="let ciudad of ciudades"  [value]="ciudad">{{ciudad.ciudad}}</option>
+            </select>
+          </div>
+    
+          <button type="submit" class="btn btn-primary" (click)="crear()" >Submit</button>
+        </form>
+  </div>
+</div>

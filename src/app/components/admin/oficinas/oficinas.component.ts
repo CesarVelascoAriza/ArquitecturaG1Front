@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Oficinas } from 'src/app/models/oficinas';
+import { OficinasService } from 'src/app/services/oficina/oficinas.service';
 
 @Component({
   selector: 'app-oficinas',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OficinasComponent implements OnInit {
 
-  constructor() { }
+  titulo:string='Listado de oficinas';
+  listado:Oficinas[]=[];
+
+  constructor(
+    private serviceOf:OficinasService
+  ) { }
 
   ngOnInit(): void {
+    this.serviceOf.listar().subscribe(listado=> this.listado=listado)
+  }
+  eliminar(oficina:Oficinas):void{
+    
   }
 
 }

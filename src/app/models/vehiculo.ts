@@ -5,5 +5,5 @@ export class Vehiculo {
     id?:number=0;
     placa:string = "";
     marca:Marca=new Marca();
-    MedioTransporte:MedioTransporte =new MedioTransporte();
+    medio:MedioTransporte =new MedioTransporte();
 }

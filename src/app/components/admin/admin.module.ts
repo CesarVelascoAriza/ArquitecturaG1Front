@@ -12,7 +12,9 @@ import { EstadosComponent } from './estados/estados.component';
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { VehiculoFormComponent } from './vehiculo-form/vehiculo-form.component';
 import { EstadosFormComponent } from './estados-form/estados-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
 
 
 @NgModule({
@@ -26,12 +28,15 @@ import { FormsModule } from '@angular/forms';
     EstadosComponent,
     VehiculoComponent,
     VehiculoFormComponent,
-    EstadosFormComponent
+    EstadosFormComponent,
+    UsuariosComponent,
+    UsuariosFormComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
