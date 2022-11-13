@@ -8,6 +8,8 @@ import { OficinasFormComponent } from './oficinas-form/oficinas-form.component';
 import { OficinasComponent } from './oficinas/oficinas.component';
 import { TarifasFormComponent } from './tarifas-form/tarifas-form.component';
 import { TarifasComponent } from './tarifas/tarifas.component';
+import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VehiculoFormComponent } from './vehiculo-form/vehiculo-form.component';
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
 
@@ -30,9 +32,9 @@ const routes: Routes = [
       { path: "vehiculo", component: VehiculoComponent },
       { path: "vehiculo/form", component: VehiculoFormComponent },
       { path: "vehiculo/form/:id", component: VehiculoFormComponent },
-      { path: "usuario", component: VehiculoComponent },
-      { path: "usuario/form", component: VehiculoFormComponent },
-      { path: "usuarios/form/:id", component: VehiculoFormComponent },
+      { path: "usuario", component: UsuariosComponent },
+      { path: "usuario/form", component: UsuariosFormComponent },
+      { path: "usuarios/form/:id", component: UsuariosFormComponent },
       { path: "**", redirectTo: "oficina" }
     ]
   }

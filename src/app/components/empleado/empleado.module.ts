@@ -8,7 +8,7 @@ import { EnviosFormComponent } from './envios-form/envios-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DespachosComponent } from './despachos/despachos.component';
 import { DespachosFormComponent } from './despachos-form/despachos-form.component';
-
+import {MatPaginatorModule} from'@angular/material/paginator'
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { DespachosFormComponent } from './despachos-form/despachos-form.componen
     ReactiveFormsModule,
     EmpleadoRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ]
 })
 export class EmpleadoModule { }
