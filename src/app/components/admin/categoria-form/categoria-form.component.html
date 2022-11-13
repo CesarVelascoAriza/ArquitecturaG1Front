@@ -10,15 +10,16 @@
             <form class="row g-3" #heroForm="ngForm" >
                 <div class="col-6">
                     <label for="Nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre" id="nombre">
+                    <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre" id="nombre" required="">
                 </div>
                 <div class="col-6">
                     <label for="variable" class="form-label">Variable</label>
-                    <input type="text" name="variable" id="variable" [(ngModel)]="categoria.variable.nombre" disabled
-                        value="PESO" class="form-control">
+                    <select class="form-control" name="varibleNombre" id="varibleNombre" [(ngModel)]="categoria.varible.id"required>
+                        <option *ngFor="let variable of variables" [ngValue]="variable.id">{{variable.nombre}}</option>
+                    </select>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn btn-secondary" [disabled]="">Guardar</button>
+                    <button type="submit" class="btn btn-secondary" [disabled]="!heroForm.valid" (click)="crearCat()" >Guardar</button>
                 </div>
             </form>
         </div>

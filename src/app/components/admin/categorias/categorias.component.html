@@ -20,13 +20,13 @@
               <tr *ngFor="let categoria of lista">
                 <th scope="row">{{categoria.id}}</th>
                 <td>{{categoria.nombre}}</td>
-                <td>{{categoria.variable.nombre}}</td>
+                <td>{{categoria.varible.nombre}}</td>
                 <td><button class="btn btn-secondary btn-sm" [routerLink]="['/admin/categoria/form',categoria.id]" ><i class="bi bi-pencil"> Editar</i></button></td>
                 <td><button class="btn btn-danger btn-sm" (click)="eliminar(categoria)"><i class="bi bi-trash-fill">Eliminar</i></button></td>
               </tr>
              
             </tbody>
           </table>
-          <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageIndex]="paginaActual" [pageSizeOptions]="pageSizeOpions"></mat-paginator>
+          <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageIndex]="paginaActual" [pageSizeOptions]="pageSizeOpions" (page)="paginar($event)"></mat-paginator>
     </div>
 </div>

@@ -38,7 +38,8 @@ import {MatPaginatorModule} from'@angular/material/paginator'
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    
   ]
 })
 export class AdminModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Categoria } from 'src/app/models/categoria';
 import { CategoriaService } from 'src/app/services/Categoria/categoria.service';
 import Swal from 'sweetalert2';
@@ -22,16 +23,11 @@ export class CategoriasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.service.listarPorPagina(this.paginaActual.toString(),this.totalPorPagina.toString()).subscribe(p=>{
-      this.lista=p.content as Categoria[]
-      this.totalRegistros =p.totalElements as number;
-    })
+    this.calcularRangos();
   }
 
   eliminar(categoria:Categoria):void{
-    
     Swal.fire({
-
       title:'Alerta',
       text:`Seguro de eliminar a ${categoria.nombre}?`,
       icon:'warning',
@@ -48,5 +44,16 @@ export class CategoriasComponent implements OnInit {
         }
 
     })
+  }
+  private calcularRangos() {
+    this.service.listarPorPagina(this.paginaActual.toString(),this.totalPorPagina.toString()).subscribe(p=>{
+      this.lista=p.content as Categoria[]
+      this.totalRegistros =p.totalElements as number;
+    })
+  }
+  paginar(event:PageEvent):void{
+    this.paginaActual = event.pageIndex;
+    this.totalPorPagina= event.pageSize;
+    this.calcularRangos();
   }
 }

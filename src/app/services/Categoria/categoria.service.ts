@@ -7,7 +7,7 @@ import { Categoria } from 'src/app/models/categoria';
   providedIn: 'root'
 })
 export class CategoriaService {
-  private urlEndPoint:string="/api/"
+  private urlEndPoint:string="/api/categoria"
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   constructor(
     private http:HttpClient

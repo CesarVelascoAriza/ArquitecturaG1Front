@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: "estado/form/:id", component: EstadosFormComponent },
       { path: "categoria", component: CategoriasComponent },
       { path: "categoria/form", component: CategoriaFormComponent },
+      { path: "categoria/form/:id", component: CategoriaFormComponent },
       { path: "tarifas", component: TarifasComponent },
       { path: "tarifas/form", component: TarifasFormComponent },
       { path: "tarifas/form/:id", component: TarifasFormComponent },
