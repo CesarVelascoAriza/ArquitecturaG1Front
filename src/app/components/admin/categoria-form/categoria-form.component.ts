@@ -30,7 +30,7 @@ export class CategoriaFormComponent implements OnInit {
 
   crearCat(): void {
     this.service.crear(this.categoria).subscribe((categorias)=>{
-      Swal.fire('Nuevo:',`alert producto id ${categorias.nombre} creado con exito!`,'success');
+      Swal.fire('Nuevo:',`alert categoria id ${categorias.nombre} creado con exito!`,'success');
       this.router.navigate(['/admin/categoria']);
     })
   }

@@ -1,1 +1,19 @@
-<p>usuarios-form works!</p>
+<div class="card m-3">
+    <div class="card-header">
+        {{titulo}}
+    </div>
+    <div class="card-body">
+        <div class="text-end">
+            <button class="btn btn-secondary" routerLink="/admin/usuario">Retornar</button>
+        </div>
+        <div class="row m-3" >
+            <form class="row g-3" #userForm="ngForm">
+                <div class="col-6">
+                    <select name="tipo" id="tipo" >
+
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

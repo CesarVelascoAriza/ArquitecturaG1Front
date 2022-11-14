@@ -7,7 +7,12 @@
             <button class="btn btn-secondary" routerLink="/empleado/despachos">Regresar</button>
         </div>
         <div class="row">
-            <form class="row g-3">
+            <form class="row g-3" #despachoForm="ngForm">
+                <div class="col-6">
+                    <label for="origen" class="form-label">Fecha de salida </label>
+                    <input type="date" class="form-control" id="origen" [(ngModel)]="despacho.fechaDespacho" name="origen"
+                        required>
+                </div>
                 <div class="col-6">
                     <label for="origen" class="form-label">Origen</label>
                     <input type="text" class="form-control" id="origen" [(ngModel)]="despacho.origen" name="origen"
@@ -20,13 +25,15 @@
                 </div>
                 <div class="col-6">
                     <label for="destino" class="form-label">Vehiculo</label>
-                    <input type="text" class="form-control" id="destino" [(ngModel)]="despacho.destino" name="destino"
-                        required>
+                    <select class="form-select" name="vehiculo" id="vehiculo" aria-label="Default select example" [(ngModel)]="despacho.vehiculo.id" required>
+                        <option *ngFor="let vehiculo of listVehiculos" [ngValue]="vehiculo.id" >{{vehiculo.placa}}- {{vehiculo.medio.medio}} </option>
+                    </select>
                 </div>
                 <div class="col-6">
-                    <label for="destino" class="form-label">Vehiculo</label>
-                    <input type="text" class="form-control" id="destino" [(ngModel)]="despacho.destino" name="destino"
-                        required>
+                    <label for="destino" class="form-label">Estado</label>
+                    <select name="estado" id="estado" class="form-select" [(ngModel)]="despacho.estadoDespacho.id">
+                        <option *ngFor="let estado of  listEstado" [ngValue]="estado.id" > {{estado.estado}} </option>
+                    </select>
                 </div>
                 <div class="col-12">
                     <label for="Observaciones" class="form-label">Observaciones</label>
@@ -41,8 +48,8 @@
                             <th scope="col">Entregado</th>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let desEn of despacho.despachos">
-                               <td>{{desEn.fechaEntrega}}</td> 
+                            <tr *ngFor="let desEn of despacho.despachos" >
+                               <td>{{desEn.fechaEntrega | date:'yyyy-MM-dd'}}</td> 
                                <td>{{desEn.observaciones}}</td> 
                                <td>{{desEn.envio.id}} - {{desEn.envio.descripcionEnvio}} </td>
                                <td> {{desEn.entregado}}</td> 
@@ -50,7 +57,36 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-secondary" [disabled]="!despachoForm.valid" (click)="despacho.id ? actualizar() : crear()" >{{boton}}</button>
+                </div>
             </form>
+            <div class="row g-3">
+                <div class="col-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Descripcion de envio</th>
+                            <th scope="col">Usuario Emisor</th>
+                            <th scope="col">Usuario Receptor</th>
+                            <th scope="col">Origen </th>
+                            <th scope="col">Destio</th>
+                            <th scope="col">Añadir</th>                            
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let envio of enviosListado">
+                               <td>{{envio.fechaCreacion}}</td> 
+                               <td>{{envio.descripcionEnvio}}</td> 
+                               <td>{{envio.usuarioEmisor.numeroDocumento}} {{envio.usuarioEmisor.nombre}} </td>
+                               <td>{{envio.usuarioReceptor.numeroDocumento}} {{envio.usuarioReceptor.nombre}} </td>
+                               <td>{{envio.ciudadOrigen.ciudad}} </td>
+                               <td>{{envio.ciudadDestino.ciudad}} </td>
+                               <td> <button class="btn btn-secondary btn-sm" (click)="addDespachoEnvios(envio)"><i class="bi bi-plus-circle"></i> Añadir</button> </td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
