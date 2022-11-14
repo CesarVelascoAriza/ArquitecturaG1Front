@@ -24,7 +24,7 @@ export class RegistrarseComponent implements OnInit {
     email: [this.usuario.correo, Validators.required],
     tel: [this.usuario.telefono, Validators.required],
     usuario: [this.usuario.usuario, Validators.required],
-    contra: [this.usuario.contrasenia, Validators.required]
+    contra: [this.usuario.password, Validators.required]
   });
 
   constructor(
@@ -49,7 +49,7 @@ export class RegistrarseComponent implements OnInit {
     this.usuario.telefono = this.formUsuario.get('tel')?.value!
     this.usuario.tipo = tipo;
     this.usuario.usuario = this.formUsuario.get('usuario')?.value!
-    this.usuario.contrasenia = this.formUsuario.get('contra')?.value!
+    this.usuario.password = this.formUsuario.get('contra')?.value!
 
     this.userService.crear(this.usuario).subscribe(data => {
       this.formUsuario.reset();

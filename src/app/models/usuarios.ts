@@ -9,6 +9,6 @@ export class Usuarios {
     correo:string="";
     telefono:string="";
     usuario:string=null!;
-    contrasenia:string=null!;
+    password:string=null!;
     enabled:boolean=true;
 }
