@@ -10,5 +10,5 @@ export class Despacho {
     vehiculo:Vehiculo=new Vehiculo();
     observaciones:string='';
     estadoDespacho:Estado = new Estado();
-    despachos?:DespachoEnvios[]=[];
+    despachos:DespachoEnvios[]=[];
 }
