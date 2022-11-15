@@ -10,5 +10,5 @@ export class Usuarios {
     telefono:string="";
     usuario:string=null!;
     contrasenia:string=null!;
-    enabled:boolean=true;
+    enabled:boolean=false;
 }

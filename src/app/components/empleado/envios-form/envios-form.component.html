@@ -3,26 +3,53 @@
         {{titulo}}
     </div>
     <div class="card-body">
-        <div class="text-start">
+        <div class="text-end">
             <button type="button" class="btn btn-outline-primary" routerLink="/empleado/envios">Volver</button>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <form class="row g-3" #envioForm="ngForm" (ngSubmit)="onSubmit()">
-
-                    <h3>Datos de usuario que envia</h3>
-                    <div class="col-md-3">
-                        <label for="tipo" class="form-label">Tipo Documento</label>
-                        <select id="tipo" class="form-select" [(ngModel)]="envio.usuarioEmisor.tipo" name="tipo"  #tipoEmi="ngModel" required>
-                            <option value="">Selecione...</option>
-                            <option [ngValue]="list" *ngFor="let list of tipoDoc" [value]="list.id">{{list.descripcion}}
+            <form #envioForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="row g-3">
+                    <h5>Datos envios</h5>
+                    <div class="col-12">
+                        <label for="descripcionEnvio" class="form-label">Descripcion</label>
+                        <input type="text" name="descripcionEnvio" id="descripcionEnvio" [(ngModel)]="envio.descripcionEnvio"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="ciudadOrigen" class="form-label">Ciudad Origen</label>
+                        <select class="form-control" name="ciudadOrigen" id="cidudadOrigen" [(ngModel)]="envio.ciudadOrigen.id" required >
+                            <option *ngFor="let ciudad of ciudades "  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="descripcion" class="form-label">Ciudad Destino</label>
+                        <select name="ciudadDestino" id="ciudadDestino" class="form-control" [(ngModel)]="envio.ciudadDestino.id" required>
+                            <option *ngFor="let ciudad of ciudades "  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
+                        </select>
+                    </div>
+                    <div class="col-5">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" name="precio" id="precio" class="form-control" [(ngModel)]="envio.precio" required >
+                    </div>
+                    <div class="col-5">
+                        <label for="precio" class="form-label">Peso</label>
+                        <input type="number" name="peso" id="peso" class="form-control" [(ngModel)]="envio.peso" required >
+                    </div>
+                    <div class="col-2">
+                        <label for="precio" class="form-label">Calcular Precio</label>
+                        <button class=" form-control btn btn-secondary" >Calcular</button>
+                    </div>
+                </div>
+                <div class="row g-3 m-2">
+                    <h5>Datos Usuarios Remitente</h5>
+                    <div class="col-6">
+                        <label for="tipoDocumento" class="form-label">Tipo Documento</label>
+                        <select id="emisorTipo" class="form-select" [(ngModel)]="envio.usuarioEmisor.tipo.id" name="tipoDocId"  #tipoEmi="ngModel" required>
+                            <option [ngValue]="list" *ngFor="let list of tipoDoc" [ngValue]="list.id">{{list.descripcion}}
                             </option>
                         </select>
-                        <div [hidden]="tipoEmi.valid || tipoEmi.pristine" class="alert alert-danger">
-                            El campo es requerido
-                        </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <label for="usuarioEmisor" class="form-label">Numero de documento</label>
                         <input type="number" class="form-control" name="numeroDocumento" id="usuarioEmisor"
                             [(ngModel)]="envio.usuarioEmisor.numeroDocumento" #documentoEmis="ngModel" required>
@@ -30,7 +57,7 @@
                             El campo es requerido
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <label for="nombreEmisor" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombreEmisor" id="nombreEmisor"
                             [(ngModel)]="envio.usuarioEmisor.nombre" #nombreEmi="ngModel" required
@@ -39,7 +66,7 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <label for="apellidoEmisor" class="form-label">Apellido</label>
                         <input type="text" class="form-control" name="apellidoEmisor" id="apellidoEmisor"
                         [(ngModel)]="envio.usuarioEmisor.apellido" #apellido="ngModel" required
@@ -48,7 +75,7 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="direccionEmisor" class="form-label">direccion</label>
                         <input type="text" class="form-control" name="direccionEmisor" id="direccionEmisor"
                         [(ngModel)]="envio.usuarioEmisor.direccion" #direccion="ngModel"  required >
@@ -56,7 +83,7 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="correoEmisor" class="form-label">Correo</label>
                         <input type="email" class="form-control" name="correoEmisor" id="correoEmisor"
                         [(ngModel)]="envio.usuarioEmisor.correo" #correoEmi="ngModel" required >
@@ -64,7 +91,7 @@
                             El campo es requerido
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="telefonoEmisor" class="form-label">telefono</label>
                         <input type="number" class="form-control" minlength="1" maxlength="10" name="telefonoEmisor" id="telefonoEmisor"
                         [(ngModel)]="envio.usuarioEmisor.telefono" #telefonoEmi="ngModel"  required
@@ -73,26 +100,31 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <h3>Datos de usuario que Recibe</h3>
-                    <div class="col-md-3">
-                        <label for="tipoRec" class="form-label">Tipo Documento</label>
-                        <select id="tipoRec" class="form-select" [(ngModel)]="envio.usuarioEmisor.tipo" #tipoRec="ngModel" [value]="envio.usuarioReceptor.tipo" required>
-                            <option *ngFor="let list of tipoDoc" value="{{list.id}}">{{list.descripcion}}
+                    
+                </div>
+                <div class="row g-3 m-2">
+                    <h5>Datos Usurios Receptor</h5>
+                    <div class="col-6">
+                        <label for="id" class="form-label">Tipo Documento</label>
+                        <select id="id" class="form-select" [(ngModel)]="envio.usuarioReceptor.tipo.id" #tipoRec="ngModel" name="TipoIdReceptor" required>
+                            <option *ngFor="let list of tipoDoc" [ngValue]="list.id">{{list.descripcion}}
                             </option>
                         </select>
                         <div [hidden]="tipoRec.valid || tipoRec.pristine" class="alert alert-danger">
                             El campo es requerido
                         </div>
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="col-6">
                         <label for="usuarioReceptor" class="form-label">Numero de documento</label>
                         <input type="number" class="form-control" name="usuarioReceptor" id="usuarioReceptor"
                         [(ngModel)]="envio.usuarioReceptor.numeroDocumento" #numeroDocumentoRec="ngModel" required>
                             <div [hidden]="numeroDocumentoRec.valid || numeroDocumentoRec.pristine" class="alert alert-danger">
                                 El campo es requerido
-                            </div>
+                            </div>                           
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="col-6">
                         <label for="nombreReceptor" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombreReceptor" id="nombreReceptor"
                         [(ngModel)]="envio.usuarioReceptor.nombre" #nombreRec="ngModel" required >
@@ -100,7 +132,7 @@
                             El campo es requerido
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <label for="apellidoReceptor" class="form-label">Apellido</label>
                         <input type="text" class="form-control" name="apellidoReceptor" id="apellidoReceptor"
                         [(ngModel)]="envio.usuarioReceptor.apellido" #apellidoRec="ngModel" required 
@@ -109,7 +141,7 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="direccionReceptor" class="form-label">direccion</label>
                         <input type="text" class="form-control" name="direccionReceptor" id="direccionReceptor"
                         [(ngModel)]="envio.usuarioReceptor.direccion" #direccionRec="ngModel" required>
@@ -117,7 +149,7 @@
                             El campo es requerido
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="correoReceptor" class="form-label">Correo</label>
                         <input type="email" class="form-control" name="correoReceptor" id="correoReceptor"
                         [(ngModel)]="envio.usuarioReceptor.correo" #correoRec="ngModel" required
@@ -126,7 +158,7 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <label for="telefonoReceptor" class="form-label">telefono</label>
                         <input type="number" minlength="1" maxlength="10" class="form-control" name="telefonoReceptor" id="telefonoReceptor"
                         [(ngModel)]="envio.usuarioReceptor.telefono" #telefonoRec="ngModel" required
@@ -135,61 +167,12 @@
                                 El campo es requerido
                             </div>
                     </div>
-                    <h3>Datos del envio </h3>
-                    <div class="col-md-6">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" name="descripcion" id="descripcion"
-                        [(ngModel)]="envio.descripcionEnvio" #descripcionEnvio="ngModel" required
-                            [value]="envio.descripcionEnvio">
-                            <div [hidden]="descripcionEnvio.valid || descripcionEnvio.pristine" class="alert alert-danger">
-                                El campo es requerido
-                            </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="peso" class="form-label">Peso</label>
-                        <input type="text" class="form-control" name="peso" id="peso"
-                        [(ngModel)]="envio.precio" #precio="ngModel" required
-                        [value]="envio.precio">
-                        <div [hidden]="precio.valid || precio.pristine" class="alert alert-danger">
-                            El campo es requerido
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="tipo" class="form-label">Calcular</label>
-                        <button class=" form-control btn btn-primary" (click)="calcularPeso()">Carlcular</button>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="ciudadOrigen" class="form-label">Ciudad de Origen</label>
-                        <select id="ciudadOrigen" class="form-select" [(ngModel)]="envio.ciudadOrigen" #ciudadOrigen="ngModel"  required>
-                            <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.ciudad}}
-                            </option>
-                        </select>
-                        <div [hidden]="ciudadOrigen.valid || ciudadOrigen.pristine" class="alert alert-danger">
-                            El campo es requerido
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="ciudadDestino" class="form-label">Ciudad Destino</label>
-                        <select id="ciudadDestino" class="form-select" [(ngModel)]="envio.ciudadDestino" #ciudadDestino="ngModel" required >
-                            <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.ciudad}}
-                            </option>
-                        </select>
-                        <div [hidden]="ciudadDestino.valid || ciudadDestino.pristine" class="alert alert-danger" >
-                            El campo es requerido
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="precio" class="form-label">Precio</label>
-                        <input type="text" class="form-control" [value]="envio.precio" name="precio"  [(ngModel)]="envio.precio" #precio="ngModel"id="precio">
-                        <div [hidden]="precio.valid || precio.pristine" class="alert alert-danger" >
-                            El campo es requerido
-                        </div>
-                    </div>
-                    <p>{{envioForm.value| json}}</p>
-                    <p>{{envioForm.valid}}</p>
-                    <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid">Submit</button>
-                </form>
-            </div>
+
+                </div>
+                <p>{{envioForm.value| json}}</p>
+                <p>{{envioForm.valid}}</p>
+                <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid">Submit</button>
+            </form>
         </div>
     </div>
 </div>

@@ -16,8 +16,8 @@
     
           <div class="col-md-6">
             <label for="Ciudad" class="form-label">Ciudad </label>
-            <select class="form-control" name="marca" id="marca" (change)="seleccionarCiudad($event)"   required>
-                <option *ngFor="let ciudad of ciudades"  [value]="ciudad">{{ciudad.ciudad}}</option>
+            <select class="form-control" name="marca" id="marca"   required>
+                <option *ngFor="let ciudad of ciudades"  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
             </select>
           </div>
     

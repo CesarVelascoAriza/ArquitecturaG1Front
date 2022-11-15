@@ -11,6 +11,7 @@ export class Envios {
     ciudadOrigen: Ciudad =new Ciudad;
     ciudadDestino: Ciudad =new Ciudad;
     precio:number =0;
+    peso:number=0;
     estado:Estado= new Estado();
 
 }
