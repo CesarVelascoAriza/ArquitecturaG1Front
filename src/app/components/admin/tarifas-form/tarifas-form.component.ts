@@ -49,7 +49,7 @@ export class TarifasFormComponent implements OnInit {
       if (id) {
         this.titulo='Editar Tarifa';
         this.boton='Actualizar';
-        this.servicio.ver(id).subscribe((tarifas)=>this.tarifa=this.tarifa)
+        this.servicio.ver(id).subscribe((tarifas)=>this.tarifa=tarifas)
       }
     })
   }

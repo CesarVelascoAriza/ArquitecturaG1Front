@@ -31,9 +31,10 @@
                         <td>{{usuario.direccion}}</td>
                         <td>{{usuario.correo}}</td>
                         <td>{{usuario.telefono}}</td>
-                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.username}}</td>
                         <td>{{usuario.enabled}}</td>
-                        <td><button class="btn btn-secondary btn-sm" [routerLink]="['/admin/categoria/form',usuario.numeroDocumento]" ><i class="bi bi-pencil"> Editar</i></button></td>
+                        <td>{{usuario.roles[0].nombreRol}}</td>
+                        <td><button class="btn btn-secondary btn-sm" [routerLink]="['/admin/usuario/form',usuario.numeroDocumento]" ><i class="bi bi-pencil"> Editar</i></button></td>
                         <td><button class="btn btn-danger btn-sm" (click)="eliminar(usuario)"><i class="bi bi-trash-fill">Eliminar</i></button></td>
                     </tr>
                 </tbody>

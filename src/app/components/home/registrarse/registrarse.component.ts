@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Roles } from 'src/app/models/roles';
 import { TipoDocumento } from 'src/app/models/tipo-documento';
 import { Usuarios } from 'src/app/models/usuarios';
+import { TiposDocumentosService } from 'src/app/services/tipos/tipos-documentos.service';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrarse',
@@ -23,23 +27,27 @@ export class RegistrarseComponent implements OnInit {
     dir: [this.usuario.direccion, Validators.required],
     email: [this.usuario.correo, Validators.required],
     tel: [this.usuario.telefono, Validators.required],
-    usuario: [this.usuario.usuario, Validators.required],
+    usuario: [this.usuario.username, Validators.required],
     contra: [this.usuario.password, Validators.required]
   });
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService:UsuarioService
+    private userService:UsuarioService,
+    private tipoServie:TiposDocumentosService,
+    private route:Router,
   ) 
   { }
 
   ngOnInit(): void {
-    // TODO document why this method 'ngOnInit' is empty
-  
+    this.tipoServie.listar().subscribe((tipos)=> this.listTipoDocmento =tipos)
+    
   }
 
   onSubmit(){
     let tipo : TipoDocumento = new TipoDocumento();
+    let rol : Roles = new Roles();
+    rol.id=1;
     tipo.id=Number(this.formUsuario.get('tipo')?.value)
     this.usuario.numeroDocumento = Number(this.formUsuario.get('documento')?.value);
     this.usuario.nombre = this.formUsuario.get('nombre')?.value!
@@ -48,11 +56,13 @@ export class RegistrarseComponent implements OnInit {
     this.usuario.direccion = this.formUsuario.get('dir')?.value!
     this.usuario.telefono = this.formUsuario.get('tel')?.value!
     this.usuario.tipo = tipo;
-    this.usuario.usuario = this.formUsuario.get('usuario')?.value!
+    this.usuario.username = this.formUsuario.get('usuario')?.value!
     this.usuario.password = this.formUsuario.get('contra')?.value!
-
+    this.usuario.roles.push(rol);
     this.userService.crear(this.usuario).subscribe(data => {
+      Swal.fire('Nuevo:',`alert producto id ${data.nombre} creado con exito!`,'success');
       this.formUsuario.reset();
+      this.route.navigate(['/home']);
     }, err => {
       this.error =err
     });

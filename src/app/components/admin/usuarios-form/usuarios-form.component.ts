@@ -17,8 +17,9 @@ export class UsuariosFormComponent implements OnInit {
   titulo:string='Crear Usuario';
   boton:string='Crear'
   usuario:Usuarios = new Usuarios();
-  roles:Roles[]=[{id:1,nombreRol:'USUARIO'},{id:1,nombreRol:'EMPLEADO'},{id:1,nombreRol:'ADMIN'}]
+  roles:Roles[]=[{id:1,nombreRol:'ROLE_USER'},{id:2,nombreRol:'ROLE_EMPLEADO'},{id:3,nombreRol:'ROLE_ADMIN'}]
   tipodeDocumento:TipoDocumento[]=[];
+  rol:Roles= new Roles();
 
   constructor(
     private service:UsuarioService,
@@ -30,6 +31,7 @@ export class UsuariosFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.tiposDocService.listar().subscribe((tipos)=> this.tipodeDocumento = tipos);
+    this.editar();
   }
   crear():void{
     this.service.crear(this.usuario).subscribe((usuarios)=>{
@@ -42,6 +44,17 @@ export class UsuariosFormComponent implements OnInit {
       Swal.fire('Modificado:',`alert Usuario nombre ${usuarios.nombre} Modificado con exito!`,'success');
       this.router.navigate(['/admin/usuario']);
     })
+  }
+  cambiar(e:any):void{
+    console.log(this.usuario.roles)
+    console.log(this.usuario.roles.length)
+    if(this.usuario.roles.length === 0 ){
+      this.rol.id=Number(e.target.value);
+      this.usuario.roles.push(this.rol);
+    }
+    
+    
+    
   }
   editar():void{
     this.route.params.subscribe(params=>{

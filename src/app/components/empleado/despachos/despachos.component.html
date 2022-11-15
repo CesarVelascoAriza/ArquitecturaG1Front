@@ -22,14 +22,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let despacho of listaDespachos">
-                        <th>{{despacho.id}}</th>
-                        <th>{{despacho.fechaDespacho | date :'yyyy-MM-DD'}}</th>
+                        <td>{{despacho.id}}</td>
+                        <td>{{despacho.fechaDespacho | date :'yyyy-MM-dd'}}</td>
                         <td>{{despacho.origen}}</td>
                         <td>{{despacho.destino}}</td>
                         <td>{{despacho.vehiculo.placa}}</td>
-                        <th>{{despacho.observaciones}}</th>
-                        <th>{{despacho.estadoDespacho.estado}}</th>
-                        <th>{{despacho.despachos}}</th>
+                        <td>{{despacho.observaciones}}</td>
+                        <td>{{despacho.estadoDespacho.estado}}</td>
+                        <td>{{despacho.despachos.length}}</td>
                         <td><button class="btn btn-secondary btn-sm" [routerLink]="['/empleado/despachos/form',despacho.id]" ><i class="bi bi-pencil"> Editar</i></button></td>
                         <td><button class="btn btn-danger btn-sm" (click)="eliminar(despacho)"><i class="bi bi-trash-fill">Eliminar</i></button></td>
                     </tr>

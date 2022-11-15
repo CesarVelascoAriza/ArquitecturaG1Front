@@ -13,7 +13,7 @@ const routes: Routes = [
       {path:"envios/form/:id", component:EnviosFormComponent},
       {path:"despachos", component:DespachosComponent},
       {path:"despachos/form",component:DespachosFormComponent},
-      {path:"despachos/form:id",component:DespachosFormComponent},
+      {path:"despachos/form/:id",component:DespachosFormComponent},
       {path:"**", redirectTo:"envios"}
     ]
   }

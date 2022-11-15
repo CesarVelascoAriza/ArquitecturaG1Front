@@ -20,7 +20,7 @@ export class DespachosFormComponent implements OnInit {
   titulo:string='Despacho Formulario';
   boton:string='Crear';
   despacho:Despacho = new Despacho();
-
+  mostrarenvi:boolean=false;
   enviosListado:Envios[]=[];
   listVehiculos:Vehiculo[]=[];
   listEstado:Estado[]=[];
@@ -44,12 +44,13 @@ export class DespachosFormComponent implements OnInit {
 
   addDespachoEnvios(envio:Envios):void{
     this.despachoEnvios.entregado = false;
-    this.despachoEnvios.fechaEntrega = new Date().toString();
+    this.despachoEnvios.fechaEntrega = new Date().toJSON();
     this.despachoEnvios.envio=envio;
     this.despacho.despachos.push(this.despachoEnvios);
   }
 
   crear():void{
+    this.despacho.fechaDespacho='';
     this.service.crear(this.despacho).subscribe((despachos)=>{
       Swal.fire('Nuevo:',`alert despacho id ${despachos.id} creado con exito!`,'success');
       this.router.navigate(['/empleado/despachos']);
@@ -69,6 +70,7 @@ export class DespachosFormComponent implements OnInit {
       if(id){
         this.titulo='Editar formulario Despacho';
         this.boton='Actualizar';
+
         this.service.ver(id).subscribe((despachos)=> this.despacho = despachos );
       }
     });

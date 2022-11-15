@@ -34,7 +34,7 @@ const routes: Routes = [
       { path: "vehiculo/form/:id", component: VehiculoFormComponent },
       { path: "usuario", component: UsuariosComponent },
       { path: "usuario/form", component: UsuariosFormComponent },
-      { path: "usuarios/form/:id", component: UsuariosFormComponent },
+      { path: "usuario/form/:id", component: UsuariosFormComponent },
       { path: "**", redirectTo: "oficina" }
     ]
   }

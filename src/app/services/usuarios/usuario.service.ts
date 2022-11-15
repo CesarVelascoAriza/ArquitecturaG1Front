@@ -34,7 +34,7 @@ export class UsuarioService {
   }
 
   actualizar(usuario: Usuarios): Observable<Usuarios> {
-    return this.http.put<Usuarios>(this.urlEndPoint, usuario, { headers: this.httpHeaders });
+    return this.http.put<Usuarios>(`${this.urlEndPoint}/${usuario.numeroDocumento}`, usuario, { headers: this.httpHeaders });
   }
 
   eliminar(id: number): Observable<Usuarios> {

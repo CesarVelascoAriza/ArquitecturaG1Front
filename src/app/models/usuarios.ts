@@ -1,3 +1,4 @@
+import { Roles } from "./roles";
 import { TipoDocumento } from "./tipo-documento";
 
 export class Usuarios {
@@ -8,7 +9,8 @@ export class Usuarios {
     direccion:string="";
     correo:string="";
     telefono:string="";
-    usuario:string=null!;
+    username:string=null!;
     password:string=null!;
     enabled:boolean=true;
+    roles:Roles[]=[]
 }
