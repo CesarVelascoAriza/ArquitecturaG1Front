@@ -33,8 +33,9 @@ export class EnvioService {
     return this.http.delete<Envios>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
   }
 
-  listarEnviosPorAsiganar(id:number):Observable<Envios[]>{
-    return this.http.get<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion?id=${id}`);
+  listarEnviosPorAsiganar(id:number[]):Observable<Envios[]>{
+    const formData = new FormData().set('id',id.toString());
+    return this.http.get<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion`);
   }
 
 }
