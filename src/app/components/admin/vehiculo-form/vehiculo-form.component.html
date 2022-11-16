@@ -1,0 +1,36 @@
+<div class="card m-5">
+  <div class="card-header">
+    Vehiculos Form
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{titulo}}</h5>
+    <p class="text-end">
+      <button class="btn btn-outline-secondary" routerLink="/admin/vehiculo">Volver</button>
+    </p>
+
+    <p class="col-md-12">
+    <form class="row g-3" [formGroup]="formP" (ngSubmit)="onSubmit()">
+      <div class="col-md-12">
+        <label for="placa" class="form-label">Placa</label>
+        <input type="text" class="form-control" id="placa" name="placa" formControlName="placa" >
+      </div>
+
+      <div class="col-md-6">
+        <label for="placa" class="form-label">Marca</label>
+        <select class="form-control" name="marca" id="marca"  formControlName="marca"  required>
+          <option *ngFor="let marcas of listmarca" [ngValue]="marcas">{{marcas.marca}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="placa" class="form-label">Medio de Transporte</label>
+        <select class="form-control" name="tipoMedioTransporte" id="tipoMedioTransporte" formControlName="medio"  required>
+          <option *ngFor="let medioT of ListmedioTransporte" [ngValue]="medioT" [value]="medioT.id">{{medioT.medio}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!formP.valid">Submit</button>
+    </form>
+
+  </div>
+</div>

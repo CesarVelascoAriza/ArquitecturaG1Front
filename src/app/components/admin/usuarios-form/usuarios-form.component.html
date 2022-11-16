@@ -1,0 +1,69 @@
+<div class="card m-3">
+    <div class="card-header">
+        {{titulo}}
+    </div>
+    <div class="card-body">
+        <div class="text-end">
+            <button class="btn btn-secondary" routerLink="/admin/usuario">Retornar</button>
+        </div>
+        <div class="row m-3" >
+            <form class="row g-3" #userForm="ngForm">
+              
+                <div class="col-6">
+                    <label for="tipo" class="form-label">Tipo de Documento</label>
+                    <select name="tipo" id="tipo" [(ngModel)]="usuario.tipo.id" class="form-select" required>
+                        <option  *ngFor="let tipo of tipodeDocumento" [ngValue]="tipo.id">{{tipo.descripcion}} </option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="numeroDocu" class="form-label">Numero de documento</label>
+                    <input type="number" class="form-control" name="numeroDocumento" id="numeroDocu" [(ngModel)]="usuario.numeroDocumento" required>
+                </div>
+                <div class="col-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" [(ngModel)]="usuario.nombre" required>
+                </div>
+                <div class="col-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" name="apellido" id="apellido" [(ngModel)]="usuario.apellido" required>
+                </div>
+                <div class="col-6">
+                    <label for="direcccion" class="form-label">Direccion</label>
+                    <input type="text" class="form-control" name="direcccion" id="direcccion" [(ngModel)]="usuario.direccion" required>
+                </div>
+                <div class="col-6">
+                    <label for="correo" class="form-label">Correo electronico</label>
+                    <input type="email" class="form-control" name="correo" id="correo" [(ngModel)]="usuario.correo" required>
+                </div>
+                <div class="col-6">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="tel" class="form-control" name="telefono" id="telefono" minlength="8" maxlength="11" [(ngModel)]="usuario.telefono" required>
+                </div>
+                <div class="col-6">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" name="usuario" id="usuario" [(ngModel)]="usuario.username" required>
+                </div>
+                <div class="col-6">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" [(ngModel)]="usuario.password" required>
+                </div>
+                <div class="col-6">
+                    <label for="roles" class="form-label">Rol a desempeñar del usuario</label>
+                    <select class="form-select" name="roles" id="reles" required (change)="cambiar($event)" >
+                        <option *ngFor="let rol of roles" value="{{rol.id}}">{{rol.nombreRol}}</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <input type="checkbox" name="Activo" id="Activo" class="form-check-input" [(ngModel)]="usuario.enabled" required>
+                    <label class="form-check-label" for="Activo">
+                        Default checkbox
+                      </label>
+                </div>
+                <p>{{userForm.value |json}}/p>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-secondary" [disabled]="!userForm.valid" (click)="usuario.numeroDocumento ? actualizar()  :crear() " >{{boton}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

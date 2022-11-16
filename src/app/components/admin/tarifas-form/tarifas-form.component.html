@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header text-center">
+        {{titulo}}
+    </div>
+    <div class="card-body">
+        <div class="text-end">
+            <button class="btn btn-outline-secondary" routerLink="/admin/tarifas">Regresar</button>
+        </div>
+        <div class="row">
+            <form class="row g-3" #form="ngForm">
+                <div class="col-6">
+                    <label for="min" class="form-label">Valor minimo de la categoria</label>
+                    <input type="number" name="valorMin" id="min" [(ngModel)]="tarifa.valorMin" class="form-control"
+                        required>
+                </div>
+                <div class="col-6 ">
+                    <label for="" class="form-label">Valor maximo de la categoria</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Kg</span>
+                        <input type="text" class="form-control" [(ngModel)]="tarifa.valorMax" name="valorMax" required>
+                    </div>
+                </div>
+                <div class="col-6 ">
+                    <label for="precio" class="form-label">Precio</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" [(ngModel)]="tarifa.precio" name="precio" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="min" class="form-label">Valor minimo de la categoria</label>
+                    <select name="categoria" id="categoria" class="form-control" [(ngModel)]="tarifa.categoria.id" required>
+                        <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">{{categoria.nombre}}</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="!form.valid" (click)="tarifa.id ? actualizar() : guarda()">{{boton}}</button>
+            </form>
+        </div>
+    </div>
+</div>

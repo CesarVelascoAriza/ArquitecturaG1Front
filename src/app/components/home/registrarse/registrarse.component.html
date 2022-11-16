@@ -1,0 +1,54 @@
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="row g-3" [formGroup]="formUsuario" (ngSubmit)="onSubmit()" >
+                    <h1 class="text-center">Registrarse</h1>
+                    <div class="col-md-6">
+                        <label for="tipo" class="form-label">Tipo Documento</label>
+                        <select id="tipo" class="form-select" formControlName="tipo">
+                            <option *ngFor="let list of listTipoDocmento" value="{{list.id}}">{{list.descripcion}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="documento" class="form-label">Numero De Documento</label>
+                        <input type="number" maxlength="11" minlength="11" class="form-control" id="documento" formControlName="documento">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" maxlength="45" minlength="2" class="form-control" id="nombre" formControlName="nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control"  maxlength="40" id="apellido" formControlName="apellido">
+                    </div>
+                    <div class="col-12">
+                        <label for="dir" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" maxlength="40" id="dir" placeholder="carrera 10" formControlName="dir">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="email" formControlName="email">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tel" class="form-label">Telefono</label>
+                        <input type="tel" maxlength="11" class="form-control" name="Telefono" id="tel" formControlName="tel">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" formControlName="usuario">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="contra" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="contra" id="contra" formControlName="contra">
+                    </div>
+                    <!-- <p>Form values: {{ formUsuario.value |json }}</p>
+                    <p>Form Status: {{ formUsuario.status }}</p> -->
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary" [disabled]="!formUsuario.valid">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

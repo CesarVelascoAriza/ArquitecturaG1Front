@@ -1,0 +1,31 @@
+<div class="card m-4">
+    <div class="card-header  text-center">
+        Formulario de estados
+    </div>
+  <div class="card-body">
+    <h5 class="card-title">Listado de estados</h5>
+    <p class="text-end">
+        <button class="btn btn-outline-info" routerLink="/admin/estado/form">Crear Estado</button>
+    </p>
+    <p class="card-text">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">estado</th>
+              <th scope="col">editar</th>
+              <th scope="col">Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let estado of listEstado">
+              <th scope="row">{{estado.id}}</th>
+              <td>{{estado.estado}}</td>
+              <td><i class="bi bi-pencil-square" [routerLink]="['/admin/estado/form',estado.id]"></i></td>
+              <td><i class="bi bi-trash-fill" (click)="eliminar(estado)"></i></td>
+            </tr>
+          </tbody>
+        </table>   
+    
+  </div>
+</div>
