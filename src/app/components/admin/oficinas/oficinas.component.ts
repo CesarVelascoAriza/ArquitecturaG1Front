@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Oficinas } from 'src/app/models/oficinas';
 import { OficinasService } from 'src/app/services/oficina/oficinas.service';
+import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -45,6 +46,7 @@ export class OficinasComponent implements OnInit {
         }
     })
   }
+
   private calcularRangos() {
     this.serviceOf.listarPorPagina(this.paginaActual.toString(),this.totalPorPagina.toString()).subscribe(p=>{
       this.listado=p.content as Oficinas[]
@@ -56,4 +58,5 @@ export class OficinasComponent implements OnInit {
     this.totalPorPagina= event.pageSize;
     this.calcularRangos();
   }
+
 }
