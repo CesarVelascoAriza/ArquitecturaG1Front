@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Envios } from 'src/app/models/envios';
@@ -13,6 +13,14 @@ export class EnvioService {
   constructor(
     private http:HttpClient
   ) { }
+
+  listarPorPagina(page:string,size:string):Observable<any>{
+    const params =new HttpParams()
+    .set('page',page)
+    .set('size',size);
+
+    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
+  }
 
   listar():Observable<Envios[]>{
     return this.http.get<Envios[]>(this.urlEndPoint);
