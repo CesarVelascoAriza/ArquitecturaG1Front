@@ -18,6 +18,11 @@ export class EnvioService {
     this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + oaut.token)
   }
 
+  listarPorPagina(page:string,size:string):Observable<any>{
+    const params =new HttpParams()
+    .set('page',page)
+    .set('size',size);
+
     return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
   }
 
