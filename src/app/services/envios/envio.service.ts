@@ -34,8 +34,10 @@ export class EnvioService {
   }
 
   listarEnviosPorAsiganar(id:number[]):Observable<Envios[]>{
-    const formData = new FormData().set('id',id.toString());
-    return this.http.get<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion`);
+    const body = new FormData();
+    body.append('id',id.toString());
+    this.httpHeaders = new HttpHeaders({'mimeType':'multipart/form-data'});
+    return this.http.post<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion-2`,body,{headers: this.httpHeaders});
   }
 
 }
