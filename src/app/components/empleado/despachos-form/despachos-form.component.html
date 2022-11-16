@@ -53,9 +53,9 @@
                         <tbody>
                             <tr *ngFor="let desEn of despacho.despachos">
                                 <td>{{desEn.fechaEntrega | date:'yyyy-MM-dd'}}</td>
-                                <td>{{desEn.observaciones}}</td>
+                                <td> <input type="text" name="observaciones" id="observaciones" [(ngModel)]="desEn.observaciones"> </td>
                                 <td>{{desEn.envio.id}} - {{desEn.envio.descripcionEnvio}} </td>
-                                <td> {{desEn.entregado}}</td>
+                                <td> <input type="checkbox" name="entregado" id="entregado" [(ngModel)]="desEn.entregado" > </td>
                             </tr>
                         </tbody>
                     </table>

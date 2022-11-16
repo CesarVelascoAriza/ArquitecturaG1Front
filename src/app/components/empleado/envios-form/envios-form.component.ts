@@ -4,10 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Ciudad } from 'src/app/models/ciudad';
 import { Envios } from 'src/app/models/envios';
 import { Estado } from 'src/app/models/estado';
+import { Roles } from 'src/app/models/roles';
 import { TipoDocumento } from 'src/app/models/tipo-documento';
 import { CiudadService } from 'src/app/services/ciudades/ciudad.service';
 import { EnvioService } from 'src/app/services/envios/envio.service';
 import { EstadoService } from 'src/app/services/estado/estado.service';
+import { TarifaService } from 'src/app/services/tarifas/tarifa.service';
 import { TiposDocumentosService } from 'src/app/services/tipos/tipos-documentos.service';
 
 @Component({
@@ -22,13 +24,14 @@ export class EnviosFormComponent implements OnInit {
   tipoDoc: TipoDocumento[] = [];
   estado:Estado[]=[];
   ciudades:Ciudad[]=[];
- 
+  rol:Roles= new Roles();
 
   constructor(
     private serviceTipo: TiposDocumentosService,
     private servicEnvio: EnvioService,
     private servicioEstado:EstadoService,
     private servicioCiudad:CiudadService,
+    private serviTari:TarifaService,
     private router:Router,
     private route:ActivatedRoute
   ) { }
@@ -42,6 +45,9 @@ export class EnviosFormComponent implements OnInit {
   onSubmit(): void {
     
     this.envio.estado.id=8;
+    this.rol.id=1;
+    this.envio.usuarioEmisor.roles.push(this.rol);
+    this.envio.usuarioReceptor.roles.push(this.rol);
     console.log(this.envio)
     this.servicEnvio.crear(this.envio).subscribe(data=>{
       alert(`envio creado {data.id} con exito! `);
@@ -58,6 +64,9 @@ export class EnviosFormComponent implements OnInit {
     })
   }
   calcularPeso():void{
-
-  }
+    console.log("pruebas");
+    this.serviTari.obtenerValorTarifas(Number(this.envio.peso)).subscribe((tarfifa)=>{
+      this.envio.precio=tarfifa.precio;
+    })
+      }
 }

@@ -41,4 +41,7 @@ export class TarifaService {
   eliminar(id:number):Observable<Tarifas>{
     return this.http.delete<Tarifas>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
   }
+  obtenerValorTarifas(valor:number):Observable<Tarifas>{
+    return this.http.get<Tarifas>(`${this.urlEndPoint}/calcular-tarifa?valor=${valor}`);
+  }
 }

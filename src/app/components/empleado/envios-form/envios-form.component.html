@@ -7,7 +7,7 @@
             <button type="button" class="btn btn-outline-primary" routerLink="/empleado/envios">Volver</button>
         </div>
         <div class="row">
-            <form #envioForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #envioForm="ngForm" >
                 <div class="row g-3">
                     <h5>Datos envios</h5>
                     <div class="col-12">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-5">
                         <label for="precio" class="form-label">Precio</label>
-                        <input type="number" name="precio" id="precio" class="form-control" [(ngModel)]="envio.precio" required >
+                        <input type="number" name="precio" id="precio" class="form-control" disabled="true" [(ngModel)]="envio.precio" required >
                     </div>
                     <div class="col-5">
                         <label for="precio" class="form-label">Peso</label>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-2">
                         <label for="precio" class="form-label">Calcular Precio</label>
-                        <button class=" form-control btn btn-secondary" >Calcular</button>
+                        <button class=" form-control btn btn-secondary" (click)="calcularPeso()" >Calcular</button>
                     </div>
                 </div>
                 <div class="row g-3 m-2">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-4">
                         <label for="telefonoEmisor" class="form-label">telefono</label>
-                        <input type="number" class="form-control" minlength="1" maxlength="10" name="telefonoEmisor" id="telefonoEmisor"
+                        <input type="tel" class="form-control" minlength="8" maxlength="10" name="telefonoEmisor" id="telefonoEmisor"
                         [(ngModel)]="envio.usuarioEmisor.telefono" #telefonoEmi="ngModel"  required
                             >
                             <div [hidden]="telefonoEmi.valid || telefonoEmi.pristine" class="alert alert-danger">
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-4">
                         <label for="telefonoReceptor" class="form-label">telefono</label>
-                        <input type="number" minlength="1" maxlength="10" class="form-control" name="telefonoReceptor" id="telefonoReceptor"
+                        <input type="tel" minlength="8" maxlength="10" class="form-control" name="telefonoReceptor" id="telefonoReceptor"
                         [(ngModel)]="envio.usuarioReceptor.telefono" #telefonoRec="ngModel" required
                             [value]="envio.usuarioReceptor.telefono">
                             <div [hidden]="telefonoRec.valid || telefonoRec.pristine" class="alert alert-danger">
@@ -171,7 +171,7 @@
                 </div>
                 <p>{{envioForm.value| json}}</p>
                 <p>{{envioForm.valid}}</p>
-                <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid" (click)="onSubmit()">Submit</button>
             </form>
         </div>
     </div>

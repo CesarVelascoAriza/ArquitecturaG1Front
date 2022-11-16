@@ -36,7 +36,7 @@ export class DespachosFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.serEnvio.listar().subscribe((envios)=> this.enviosListado = envios );
+    this.serEnvio.listarEnviosPorAsiganar(8).subscribe((envios)=> this.enviosListado = envios );
     this.serVehiculo.listar().subscribe((vehiculos)=> this.listVehiculos = vehiculos);
     this.serEstado.listar().subscribe((estados)=> this.listEstado = estados);
     this.editar();

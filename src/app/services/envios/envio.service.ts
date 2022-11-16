@@ -22,7 +22,7 @@ export class EnvioService {
   }
 
   crear(envio:Envios):Observable<Envios>{
-    return this.http.post<Envios>(this.urlEndPoint,envio,{headers:this.httpHeaders});
+    return this.http.post<Envios>(this.urlEndPoint+'/crear-envio-usuario',envio,{headers:this.httpHeaders});
   }
 
   actualizar(envio:Envios):Observable<Envios>{
@@ -33,5 +33,8 @@ export class EnvioService {
     return this.http.delete<Envios>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
   }
 
+  listarEnviosPorAsiganar(id:number):Observable<Envios[]>{
+    return this.http.get<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion?id=${id}`);
+  }
 
 }
