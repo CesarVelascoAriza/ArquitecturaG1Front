@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Oficinas } from 'src/app/models/oficinas';
 import { OficinasService } from 'src/app/services/oficina/oficinas.service';
+import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -39,4 +40,5 @@ export class OficinasComponent implements OnInit {
     this.totalPorPagina= event.pageSize;
     this.calcularRangos();
   }
+
 }
