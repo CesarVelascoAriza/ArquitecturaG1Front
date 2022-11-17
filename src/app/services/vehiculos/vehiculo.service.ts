@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vehiculo } from 'src/app/models/vehiculo';
@@ -30,6 +30,14 @@ export class VehiculoService {
 
   eliminar(id:number):Observable<Vehiculo>{
     return this.http.delete<Vehiculo>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
+  }
+
+  listarPorPagina(page:string,size:string):Observable<any>{
+    const params =new HttpParams()
+    .set('page',page)
+    .set('size',size);
+
+    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
   }
 
 }

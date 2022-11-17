@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Envios } from 'src/app/models/envios';
@@ -39,5 +39,11 @@ export class EnvioService {
     this.httpHeaders = new HttpHeaders({'mimeType':'multipart/form-data'});
     return this.http.post<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion-2`,body,{headers: this.httpHeaders});
   }
+  listarPorPagina(page:string,size:string):Observable<any>{
+    const params =new HttpParams()
+    .set('page',page)
+    .set('size',size);
 
+    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
+  }
 }

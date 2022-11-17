@@ -31,6 +31,6 @@
             </tr>
           </tbody>
         </table>
-    
+        <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageIndex]="paginaActual" [pageSizeOptions]="pageSizeOpions" (page)="paginar($event)"></mat-paginator>
   </div>
 </div>

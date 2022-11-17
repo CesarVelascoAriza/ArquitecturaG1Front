@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Oficinas } from 'src/app/models/oficinas';
@@ -31,5 +31,12 @@ export class OficinasService {
 
   eliminar(id:number):Observable<Oficinas>{
     return this.http.delete<Oficinas>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
+  }
+  listarPorPagina(page:string,size:string):Observable<any>{
+    const params =new HttpParams()
+    .set('page',page)
+    .set('size',size);
+
+    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
   }
 }
