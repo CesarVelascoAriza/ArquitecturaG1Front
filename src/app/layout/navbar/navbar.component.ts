@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OauthService } from 'src/app/services/usuarios/oauth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { /* TODO document why this constructor is empty */  }
+  isLogged:boolean= false;
+  username:string='';
+  constructor(
+    private oaut:OauthService
+  ) { /* TODO document why this constructor is empty */  }
 
   ngOnInit(): void {
-    // TODO document why this method 'ngOnInit' is empty
-  
+    this.oaut.usuario.subscribe(data=>{
+      this.isLogged=true;
+      this.username=data;
+    })
   }
+
 
 }

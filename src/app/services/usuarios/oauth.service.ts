@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuarios } from 'src/app/models/usuarios';
 
@@ -9,6 +9,10 @@ import { Usuarios } from 'src/app/models/usuarios';
 export class OauthService {
   
   private urlEndPoint:string="/api/security/oauth/token";
+  token=new EventEmitter<string>();
+  usuario=new EventEmitter<string>();
+
+
   private httpHeaders = new HttpHeaders(
     {
       'Authorization':'Basic QW5ndWxhckFwcDoxMjM0NTY3ODkw',
@@ -20,10 +24,14 @@ export class OauthService {
   ) { /* TODO document why this constructor is empty */  }
 
   
-  login(usuario:any):Observable<Usuarios>{
+  login(usuario:any):Observable<any>{
     const body = new HttpParams({fromObject:usuario});
-    return this.http.post<Usuarios>(this.urlEndPoint,body.toString(),{headers:this.httpHeaders});
+    return this.http.post<any>(this.urlEndPoint,body.toString(),{headers:this.httpHeaders});
   }
+  
+  
+  logout():void{
 
+  }
   
 }

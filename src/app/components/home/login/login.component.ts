@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
   onSubmit():void{
     this.outhService.login(this.formLogin.value).subscribe(data=>{
       localStorage.setItem('usuario',data.toString());
+      this.outhService.token.emit(data.token)
+      this.outhService.usuario.emit(data.usuario);
       this.router.navigate(['/empleado']);
     })
   }
