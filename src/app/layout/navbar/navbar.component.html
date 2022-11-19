@@ -12,39 +12,56 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="consultartarifa" >Tarifas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="nosotros" >Nosotros</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/empleado" >envios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/empleado/despachos" >despachos </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/tarifas" >Tarifas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/categoria" >Categorias</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/oficina" >Oficinas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/vehiculo" >vehiculo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/usuario" >Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/estado" >Estados</a>
-        </li>
+        <ng-template #usuariosNologueado>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="nosotros" >Nosotros</a>
+          </li>
+        </ng-template>
+        <ng-container *ngIf="isEmpleado; else usuariosNologueado">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/empleado" >envios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/empleado/despachos" >despachos </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="isAdmin ; else usuariosNologueado">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/tarifas" >Tarifas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/categoria" >Categorias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/oficina" >Oficinas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/vehiculo" >vehiculo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/usuario" >Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/estado" >Estados</a>
+          </li>
+        </ng-container>
+       
         
       </ul>
-      <form class="d-flex">
-        <div class="btn btn-outline-success me-2" routerLink="/registro">Registrarse</div>
-        <div class="btn btn-outline-success"  routerLink="login" >Login</div>
-      </form>
+      <ng-container *ngIf="isLogged ; else usuarioLogueado">
+      <div class="m-2">
+        Bienvenido {{username}}
+      </div>  
+        <div class="m-2">
+          <div class="btn btn-outline-success"  routerLink="login" (click)="logout()" >Cerrar sesion </div>
+        </div>
+      </ng-container>
+      <ng-template #usuarioLogueado>
+        <form class="d-flex">
+          <div class="btn btn-outline-success me-2" routerLink="/registro">Registrarse</div>
+          <div class="btn btn-outline-success"  routerLink="login" >Login</div>
+        </form>
+      </ng-template>
     </div>
   </div>
 </nav>
