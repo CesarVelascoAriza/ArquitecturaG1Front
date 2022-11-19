@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card m-3">
     <div class="card-header">
         {{titulo}}
     </div>
@@ -13,17 +13,23 @@
                     <div class="col-12">
                         <label for="descripcionEnvio" class="form-label">Descripcion</label>
                         <input type="text" name="descripcionEnvio" id="descripcionEnvio" [(ngModel)]="envio.descripcionEnvio"
-                            class="form-control" required>
+                            class="form-control" required minlength="5" maxlength="50" #descripcio="ngModel">
+                            <div [hidden]="descripcio.valid || descripcio.pristine" class="alert alert-danger">
+                                El campo es requerido
+                            </div>
                     </div>
                     <div class="col-6">
                         <label for="ciudadOrigen" class="form-label">Ciudad Origen</label>
-                        <select class="form-control" name="ciudadOrigen" id="cidudadOrigen" [(ngModel)]="envio.ciudadOrigen.id" required >
-                            <option *ngFor="let ciudad of ciudades "  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
+                        <select class="form-select" name="ciudadOrigen" id="cidudadOrigen" required   [(ngModel)]="envio.ciudadOrigen.id" #ciudadOrigen="ngModel" >
+                            <option selected *ngFor="let ciudad of ciudades "  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
                         </select>
+                        <div [hidden]="ciudadOrigen.valid && (ciudadOrigen.pristine || ciudadOrigen.touched)" class="alert alert-danger">
+                            El campo es requerido
+                        </div>
                     </div>
                     <div class="col-6">
                         <label for="descripcion" class="form-label">Ciudad Destino</label>
-                        <select name="ciudadDestino" id="ciudadDestino" class="form-control" [(ngModel)]="envio.ciudadDestino.id" required>
+                        <select name="ciudadDestino" id="ciudadDestino" class="form-select" required [(ngModel)]="envio.ciudadDestino.id" >
                             <option *ngFor="let ciudad of ciudades "  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
                         </select>
                     </div>
@@ -169,9 +175,11 @@
                     </div>
 
                 </div>
-                <p>{{envioForm.value| json}}</p>
-                <p>{{envioForm.valid}}</p>
-                <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid" (click)="onSubmit()">Submit</button>
+                <!-- <p>{{envioForm.value| json}}</p>
+                <p>{{envioForm.valid}}</p> -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid" (click)="onSubmit()">Submit</button>
+                </div>
             </form>
         </div>
     </div>
