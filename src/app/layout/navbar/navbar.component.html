@@ -12,20 +12,24 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="consultartarifa" >Tarifas</a>
         </li>
-        <ng-template #usuariosNologueado>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="nosotros" >Nosotros</a>
-          </li>
-        </ng-template>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="nosotros" >Nosotros</a>
+        </li>
+      </ul>
         <ng-container *ngIf="isEmpleado; else usuariosNologueado">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      
           <li class="nav-item">
             <a class="nav-link" routerLink="/empleado" >envios</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/empleado/despachos" >despachos </a>
           </li>
+          </ul>
         </ng-container>
         <ng-container *ngIf="isAdmin ; else usuariosNologueado">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      
           <li class="nav-item">
             <a class="nav-link" routerLink="/admin/tarifas" >Tarifas</a>
           </li>
@@ -44,10 +48,13 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/admin/estado" >Estados</a>
           </li>
+          </ul>
         </ng-container>
-       
+        <ng-template #usuariosNologueado>
+         
+        </ng-template>
         
-      </ul>
+     
       <ng-container *ngIf="isLogged ; else usuarioLogueado">
       <div class="m-2">
         Bienvenido {{username}}

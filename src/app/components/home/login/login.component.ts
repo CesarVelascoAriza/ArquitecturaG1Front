@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         console.log(usuario);
         console.log();
         if(usuario.authorities[0]==="ROLE_EMPLEADO"){
-          this.router.navigate(['/empleado']);
+          this.router.navigate(['/empleado']).then();
         }else if(usuario.authorities[0]==="ROLE_ADMIN"){
           this.router.navigate(['/admin']);
         }else{

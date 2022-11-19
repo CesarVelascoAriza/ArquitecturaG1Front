@@ -23,7 +23,7 @@ export class VehiculoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.calcularRangos();
   }
 
   eliminar(vehiculo:Vehiculo):void{
