@@ -24,21 +24,24 @@ export class NavbarComponent implements OnInit {
       this.isLogged= true;
       this.isEmpleado= true;
       this.username = this.oaut.usuario.nombre;
-     
     }else if(this.oaut.hasRoles('ROLE_ADMIN')){
       this.isAdmin= true;
-      this.username = this.oaut.usuario.nombre;
       this.isLogged= true;
+      this.username = this.oaut.usuario.nombre;
+      
     }
     else if(this.oaut.hasRoles('ROLE_USER')){
       this.username = this.oaut.usuario.nombre;
       this.isLogged= true;
+      
     }
   }
 
   logout(): void {
     this.oaut.logout();
     this.isLogged = false
+    this.isAdmin = false;
+    this.isEmpleado = false;
     this.router.navigate(['/home'])
   }
 

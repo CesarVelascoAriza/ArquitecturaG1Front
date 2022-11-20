@@ -29,6 +29,9 @@
     -webkit-appearance: none; 
     margin: 0; 
   }
+  .alert.alert-danger.font {
+    font-size: 13px;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

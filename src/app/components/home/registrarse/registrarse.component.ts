@@ -57,11 +57,15 @@ export class RegistrarseComponent implements OnInit {
     this.usuario.password = this.formUsuario.get('contra')?.value!
     this.userService.crear(this.usuario).subscribe({
       next: (v) =>{
-        Swal.fire('Nuevo:', `alert producto id ${v.nombre} creado con exito!`, 'success');
+        Swal.fire('Nuevo:', `alert usuario con el nombre ${v.nombre} fue creado con exito!`, 'success');
         this.formUsuario.reset();
         this.route.navigate(['/home']);
       },
-      error:(e) =>{},
+      error:(e) =>{
+        if(e.status=== 500){
+          Swal.fire('Error', 'Usuarios duplicado', 'warning');
+        }
+      },
       complete:()=> console.log('complete')
     });
   }
