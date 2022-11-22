@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Usuarios } from 'src/app/models/usuarios';
 import { OauthService } from 'src/app/services/usuarios/oauth.service';
 import Swal from 'sweetalert2';
@@ -11,10 +10,10 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  
+
   err: any;
- 
-  user:Usuarios;
+
+  user: Usuarios;
 
   formLogin = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(45)]],
@@ -28,41 +27,47 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private outhService:OauthService
-  ) { 
-    this.user=new Usuarios();
+    private outhService: OauthService
+  ) {
+    this.user = new Usuarios();
   }
 
   ngOnInit(): void {
     // TODO document why this method 'ngOnInit' is empty
-  
+
   }
 
-  onSubmit():void{
+  onSubmit(): void {
     this.outhService.login(this.formLogin.value).subscribe({
-      next:(v)=>{
+      next: (v) => {
         console.log(v);
         this.outhService.guardarUsuario(v.access_token);
         this.outhService.guardarToken(v.access_token);
         let usuario = this.outhService.usuario;
         console.log(usuario);
         console.log();
-        if(usuario.authorities[0]==="ROLE_EMPLEADO"){
+        if (usuario.authorities[0] === "ROLE_EMPLEADO") {
           this.router.navigate(['/empleado']);
-        }else if(usuario.authorities[0]==="ROLE_ADMIN"){
+        } else if (usuario.authorities[0] === "ROLE_ADMIN") {
           this.router.navigate(['/admin']);
-        }else{
+
+        } else {
           this.router.navigate(['/home']);
         }
-        Swal.fire('login',`Hola ${usuario.nombre} Se atentico con exito !`, 'info')
+        Swal.fire('login', `Hola ${usuario.nombre} Se atentico con exito !`, 'info')
       },
-      error:(e)=>{
+      error: (e) => {
         console.log(e);
-        if(e.status===400){
-          Swal.fire('Error login','Usuario o clave incorrectos', 'error')
+        if (e.status === 400) {
+          Swal.fire('Error login', 'Usuario o clave incorrectos', 'error')
         }
       },
-      complete:()=> console.log('complete')
+      complete: () => this.reload()
     })
+  }
+  private reload() {
+    setTimeout(() => {
+      location.reload()
+    }, 1000);
   }
 }

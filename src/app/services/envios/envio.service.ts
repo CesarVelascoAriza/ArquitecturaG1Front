@@ -17,7 +17,7 @@ export class EnvioService {
     private oaut: OauthService
   ) { 
     
-    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + oaut.token)
+    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
   }
 
   listarPorPagina(page: string, size: string): Observable<any> {
@@ -52,6 +52,7 @@ export class EnvioService {
     const body = new FormData();
     body.append('id', id.toString());
     this.httpHeaders = new HttpHeaders({ 'mimeType': 'multipart/form-data' });
+    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
     return this.http.post<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion-2`, body, { headers: this.httpHeaders });
   }
 

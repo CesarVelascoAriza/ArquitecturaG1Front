@@ -3,25 +3,28 @@
     {{titulo}}
   </div>
   <div class="card-body">
+    <div class="text-end">
+      <button class="btn btn-outline-secondary" routerLink="/admin/oficina" >Regresar</button>
+    </div>
     <p class="col-md-12">
         <form class="row g-3" >
           <div class="col-md-6">
             <label for="Nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="Nombre" [(ngModel)]="oficina.nombre" name="nombre"  >
+            <input type="text" class="form-control" id="Nombre" [(ngModel)]="oficina.nombre" name="nombre" required >
           </div>
           <div class="col-md-6">
             <label for="direccion" class="form-label">Direccion</label>
-            <input type="text" class="form-control" id="direccion" [(ngModel)]="oficina.direccion" name="direccion"  >
+            <input type="text" class="form-control" id="direccion" [(ngModel)]="oficina.direccion" name="direccion" required >
           </div>
     
           <div class="col-md-6">
             <label for="Ciudad" class="form-label">Ciudad </label>
-            <select class="form-control" name="marca" id="marca"   required>
-                <option *ngFor="let ciudad of ciudades"  [ngValue]="ciudad.id">{{ciudad.ciudad}}</option>
+            <select class="form-control" name="marca" id="marca" (change)="seleccionarCiudad($event)"   required>
+                <option *ngFor="let ciudad of ciudades"  value="{{ciudad.id}}">{{ciudad.ciudad}}</option>
             </select>
           </div>
     
-          <button type="submit" class="btn btn-primary" (click)="crear()" >Submit</button>
+          <button type="submit" class="btn btn-primary" (click)="oficina.id? actualizar() :  crear()" >{{boton}}</button>
         </form>
   </div>
 </div>

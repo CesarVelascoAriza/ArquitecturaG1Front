@@ -59,9 +59,9 @@
                         Default checkbox
                       </label>
                 </div>
-                <p>{{userForm.value |json}}/p>
+               <!--  <p>{{userForm.value |json}}/p> -->
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-secondary" [disabled]="!userForm.valid" (click)="usuario.numeroDocumento ? actualizar()  :crear() " >{{boton}}</button>
+                    <button class="btn btn-secondary" [disabled]="!userForm.valid" (click)="usuario.numeroDocumento ?  crear():actualizar() " >{{boton}}</button>
                 </div>
             </form>
         </div>
