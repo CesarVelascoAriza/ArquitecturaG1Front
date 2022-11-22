@@ -11,13 +11,12 @@ export class EnvioService {
   private urlEndPoint:string="/api/envio"
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   constructor(
-    private http:HttpClient
-  ) { }
-
-  listarPorPagina(page:string,size:string):Observable<any>{
-    const params =new HttpParams()
-    .set('page',page)
-    .set('size',size);
+    private http: HttpClient,
+    private oaut: OauthService
+  ) { 
+    
+    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + oaut.token)
+  }
 
     return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
   }
@@ -41,8 +40,11 @@ export class EnvioService {
     return this.http.delete<Envios>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
   }
 
-  listarEnviosPorAsiganar(id:number):Observable<Envios[]>{
-    return this.http.get<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion?id=${id}`);
+  listarEnviosPorAsiganar(id: number[]): Observable<Envios[]> {
+    const body = new FormData();
+    body.append('id', id.toString());
+    this.httpHeaders = new HttpHeaders({ 'mimeType': 'multipart/form-data' });
+    return this.http.post<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion-2`, body, { headers: this.httpHeaders });
   }
 
 }

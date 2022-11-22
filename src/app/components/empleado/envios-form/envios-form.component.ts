@@ -11,6 +11,7 @@ import { EnvioService } from 'src/app/services/envios/envio.service';
 import { EstadoService } from 'src/app/services/estado/estado.service';
 import { TarifaService } from 'src/app/services/tarifas/tarifa.service';
 import { TiposDocumentosService } from 'src/app/services/tipos/tipos-documentos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-envios-form',
@@ -50,7 +51,7 @@ export class EnviosFormComponent implements OnInit {
     this.envio.usuarioReceptor.roles.push(this.rol);
     console.log(this.envio)
     this.servicEnvio.crear(this.envio).subscribe(data=>{
-      alert(`envio creado {data.id} con exito! `);
+      Swal.fire('Nuevo:', `envio creado ${data.id} con exito! `, 'success');
         this.router.navigate(['/empleado']);
     });
   }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/models/categoria';
+import { OauthService } from '../usuarios/oauth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,11 @@ export class CategoriaService {
   private urlEndPoint:string="/api/categoria"
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   constructor(
-    private http:HttpClient
-  ) { }
+    private http:HttpClient,
+    private oaut: OauthService
+  ) { 
+    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
+  }
 
 
   listarPorPagina(page:string,size:string):Observable<any>{
@@ -19,14 +23,14 @@ export class CategoriaService {
     .set('page',page)
     .set('size',size);
 
-    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
+    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params, headers:this.httpHeaders}) 
   }
 
   listar():Observable<Categoria[]>{
-    return this.http.get<Categoria[]>(this.urlEndPoint);
+    return this.http.get<Categoria[]>(this.urlEndPoint,{headers:this.httpHeaders});
   }
   ver(id:number):Observable<Categoria>{
-    return this.http.get<Categoria>(`${this.urlEndPoint}/${id}`);
+    return this.http.get<Categoria>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
   }
 
   crear(categoria:Categoria):Observable<Categoria>{

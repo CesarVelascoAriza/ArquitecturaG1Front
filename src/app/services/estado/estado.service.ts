@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Estado } from 'src/app/models/estado';
+import { OauthService } from '../usuarios/oauth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,17 @@ export class EstadoService {
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private oaut: OauthService
+  ) {
+    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
+   }
 
   listar():Observable<Estado[]>{
-    return this.http.get<Estado[]>(this.urlEndPoint);
+    return this.http.get<Estado[]>(this.urlEndPoint,{headers:this.httpHeaders});
   }
   ver(id:number):Observable<Estado>{
-    return this.http.get<Estado>(`${this.urlEndPoint}/${id}`);
+    return this.http.get<Estado>(`${this.urlEndPoint}/${id}`, {headers:this.httpHeaders});
   }
 
   crear(estado:Estado):Observable<Estado>{

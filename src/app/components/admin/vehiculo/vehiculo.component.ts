@@ -22,7 +22,7 @@ export class VehiculoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.servicio.listar().subscribe(data=> this.listaVehiculos=data)
+    this.calcularRangos();
   }
 
   eliminar(vehiculo:Vehiculo):void{
