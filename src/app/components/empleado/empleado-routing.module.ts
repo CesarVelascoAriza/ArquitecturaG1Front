@@ -4,6 +4,7 @@ import { DespachosFormComponent } from './despachos-form/despachos-form.componen
 import { DespachosComponent } from './despachos/despachos.component';
 import { EnviosFormComponent } from './envios-form/envios-form.component';
 import { EnviosComponent } from './envios/envios.component';
+import { UsuarioPorEnviosComponent } from './usuario-por-envios/usuario-por-envios.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path:"despachos", component:DespachosComponent},
       {path:"despachos/form",component:DespachosFormComponent},
       {path:"despachos/form/:id",component:DespachosFormComponent},
+      {path:"busquedasPorUsuarios",component:UsuarioPorEnviosComponent},
       {path:"**", redirectTo:"envios"}
     ]
   }

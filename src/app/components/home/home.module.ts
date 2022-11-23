@@ -23,7 +23,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports:[
     RegistrarseComponent,

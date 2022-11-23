@@ -1,1 +1,47 @@
-<p>cosultar-envio works!</p>
+<div class="card m-4">
+    <div class="card-header text-center">
+        <h5>Consulte su envio</h5>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formB" (ngSubmit)="onSubmit()">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <input type="search" class="form-control me-2" placeholder="Buscar por id envio" aria-label="Search"
+                    name="idEnvio" id="idENvio" formControlName="id">
+
+                <button class="btn btn-primary" type="button" [disabled]="!formB.valid">Button</button>
+            </div>
+        </form>
+        <div class="m-3" *ngIf="envio.id !== 0 ">
+            <div>
+                <label>{{envio.id}}</label>
+            </div>
+            <div>
+                <label>{{envio.fechaCreacion}}</label>
+            </div>
+            <div>
+                <label>{{envio.descripcionEnvio}}</label>
+            </div>
+            <div>
+                <label>{{envio.usuarioEmisor.nombre}}</label>
+            </div>
+            <div>
+                <label>{{envio.usuarioEmisor.apellido}}</label>
+            </div>
+            <div>
+                <label>{{envio.usuarioReceptor.nombre}}</label>
+            </div>
+            <div>
+                <label>{{envio.usuarioReceptor.apellido}}</label>
+            </div>
+            <div>
+                <label>{{envio.precio}}</label>
+            </div>
+            <div>
+                <label>{{envio.peso}}</label>
+            </div>
+            <div>
+                <label>{{envio.estado.estado}}</label>
+            </div>
+        </div>
+    </div>
+</div>
