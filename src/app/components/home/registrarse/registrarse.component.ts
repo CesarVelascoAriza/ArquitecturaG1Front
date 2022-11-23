@@ -17,8 +17,8 @@ export class RegistrarseComponent implements OnInit {
 
   listTipoDocmento: TipoDocumento[] = [];
   usuario: Usuarios = new Usuarios();
-  error: any
-
+  error:any
+  
   formUsuario = this.formBuilder.group({
     tipo: [this.usuario.tipo, Validators.required],
     documento: [this.usuario.numeroDocumento, Validators.required],
@@ -33,19 +33,22 @@ export class RegistrarseComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UsuarioService,
-    private tipoServie: TiposDocumentosService,
-    private route: Router,
-  ) { }
+    private userService:UsuarioService,
+    private tipoServie:TiposDocumentosService,
+    private route:Router,
+  ) 
+  { }
 
   ngOnInit(): void {
-    this.tipoServie.listar().subscribe((tipos) => this.listTipoDocmento = tipos)
-
+    this.tipoServie.listar().subscribe((tipos)=> this.listTipoDocmento =tipos)
+    
   }
 
-  onSubmit() {
-    let tipo: TipoDocumento = new TipoDocumento();
-    tipo.id = Number(this.formUsuario.get('tipo')?.value)
+  onSubmit(){
+    let tipo : TipoDocumento = new TipoDocumento();
+    let rol : Roles = new Roles();
+    rol.id=1;
+    tipo.id=Number(this.formUsuario.get('tipo')?.value)
     this.usuario.numeroDocumento = Number(this.formUsuario.get('documento')?.value);
     this.usuario.nombre = this.formUsuario.get('nombre')?.value!
     this.usuario.apellido = this.formUsuario.get('apellido')?.value!
@@ -55,18 +58,13 @@ export class RegistrarseComponent implements OnInit {
     this.usuario.tipo = tipo;
     this.usuario.username = this.formUsuario.get('usuario')?.value!
     this.usuario.password = this.formUsuario.get('contra')?.value!
-    this.userService.crear(this.usuario).subscribe({
-      next: (v) =>{
-        Swal.fire('Nuevo:', `alert usuario con el nombre ${v.nombre} fue creado con exito!`, 'success');
-        this.formUsuario.reset();
-        this.route.navigate(['/home']);
-      },
-      error:(e) =>{
-        if(e.status=== 500){
-          Swal.fire('Error', 'Usuarios duplicado', 'warning');
-        }
-      },
-      complete:()=> console.log('complete')
+    this.usuario.roles.push(rol);
+    this.userService.crear(this.usuario).subscribe(data => {
+      Swal.fire('Nuevo:',`alert producto id ${data.nombre} creado con exito!`,'success');
+      this.formUsuario.reset();
+      this.route.navigate(['/home']);
+    }, err => {
+      this.error =err
     });
   }
 }

@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-6">
                     <label for="destino" class="form-label">Estado</label>
-                    <select name="estado" id="estado" class="form-select" (ngModelChange)="cambios($event)" [(ngModel)]="despacho.estadoDespacho.id">
+                    <select name="estado" id="estado" class="form-select" [(ngModel)]="despacho.estadoDespacho.id">
                         <option *ngFor="let estado of  listEstado" [ngValue]="estado.id"> {{estado.estado}} </option>
                     </select>
                 </div>

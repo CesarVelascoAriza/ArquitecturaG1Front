@@ -13,5 +13,4 @@ export class Usuarios {
     password:string=null!;
     enabled:boolean=true;
     roles:Roles[]=[]
-    authorities:string[]=[]
 }

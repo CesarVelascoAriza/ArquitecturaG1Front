@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Estado } from 'src/app/models/estado';
@@ -36,13 +36,5 @@ export class EstadoService {
 
   eliminar(id:number):Observable<Estado>{
     return this.http.delete<Estado>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders});
-  }
-
-  listarPorPagina(page:string,size:string):Observable<any>{
-    const params =new HttpParams()
-    .set('page',page)
-    .set('size',size);
-
-    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params, headers : this.httpHeaders}) 
   }
 }

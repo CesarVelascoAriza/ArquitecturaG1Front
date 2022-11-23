@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuarios } from 'src/app/models/usuarios';
 import { OauthService } from 'src/app/services/usuarios/oauth.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +19,9 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(60)]],
     grant_type: ['password']
   });
+
   get usuario() { return this.formLogin.get('username')!; }
   get password() { return this.formLogin.get('password')!; }
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
