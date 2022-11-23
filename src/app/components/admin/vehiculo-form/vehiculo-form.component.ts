@@ -30,7 +30,7 @@ export class VehiculoFormComponent implements OnInit {
   })
   
   listmarca:Marca[]=[
-    {id:1,marca:'Preuba'},
+    {id:1,marca:'VMW'},
     {id:2,marca:'Chevrolet'},
     {id:3,marca:'Mazda'},
     {id:4,marca:'Honda'},
