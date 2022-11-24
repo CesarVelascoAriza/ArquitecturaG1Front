@@ -173,12 +173,17 @@
                                 El campo es requerido
                             </div>
                     </div>
-
+                    <div class="col-4"  >
+                        <label for="estado">Estado</label>
+                        <select name="estado" id="estado" class="form-select" [(ngModel)]="envio.estado.id" [disabled]="envio.id ? false: true" >
+                            <option *ngFor="let estado of estados" [ngValue]="estado.id"> {{estado.estado}}</option>
+                        </select>
+                    </div>
                 </div>
                 <!-- <p>{{envioForm.value| json}}</p>
                 <p>{{envioForm.valid}}</p> -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid" (click)="onSubmit()">Submit</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!envioForm.valid" (click)="envio.id ? actualizar()  : onSubmit()">Submit</button>
                 </div>
             </form>
         </div>

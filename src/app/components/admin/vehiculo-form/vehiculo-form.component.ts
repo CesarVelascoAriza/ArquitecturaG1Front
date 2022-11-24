@@ -39,7 +39,7 @@ export class VehiculoFormComponent implements OnInit {
     private fb: FormBuilder,
     private serviceV:VehiculoService,
     private router:Router,
-    private routes:ActivatedRoute
+    private routes:ActivatedRoute,
   ) {
   }
 
