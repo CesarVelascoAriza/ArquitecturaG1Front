@@ -47,4 +47,13 @@ export class EnvioService {
     return this.http.post<Envios[]>(`${this.urlEndPoint}/listado-estado-admincion-2`, body, { headers: this.httpHeaders });
   }
 
+  buscarPorUsurioYfecha(id:number, fechaInicial:string, fechaFinal:string):Observable<Envios[]>{
+    const body = new FormData();
+    body.append('id', id.toString());
+    body.append('fechaInicial', fechaInicial);
+    body.append('fechaFinal', fechaFinal);
+    this.httpHeaders = new HttpHeaders({ 'mimeType': 'multipart/form-data' });
+    this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
+    return this.http.post<Envios[]>(`${this.urlEndPoint}/listado-por-usuario-fecha`,body,{ headers: this.httpHeaders })
+  }
 }

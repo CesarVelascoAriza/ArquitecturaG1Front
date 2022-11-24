@@ -24,6 +24,7 @@ export class CosultarEnvioComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.envio)
     this.serviceEnvio.ver( Number(this.formB.value.id) ).subscribe(data=> this.envio= data)
   }
 }
