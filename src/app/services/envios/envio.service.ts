@@ -26,7 +26,7 @@ export class EnvioService {
     return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
   }
 
-  listar(): Observable<Envios[]> {
+  listar():Observable<Envios[]>{
     return this.http.get<Envios[]>(this.urlEndPoint);
   }
   ver(id:number):Observable<Envios>{

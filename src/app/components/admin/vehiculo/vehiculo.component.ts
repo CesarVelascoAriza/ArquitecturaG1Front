@@ -32,6 +32,7 @@ export class VehiculoComponent implements OnInit {
       console.log(data)
     })
   }
+
   private calcularRangos() {
     this.servicio.listarPorPagina(this.paginaActual.toString(),this.totalPorPagina.toString()).subscribe(p=>{
       this.listaVehiculos=p.content as Vehiculo[]
