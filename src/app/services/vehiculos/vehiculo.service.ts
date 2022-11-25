@@ -17,14 +17,6 @@ export class VehiculoService {
     this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
   }
 
-  listarPorPagina(page:string,size:string):Observable<any>{
-    const params =new HttpParams()
-    .set('page',page)
-    .set('size',size);
-
-    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
-  }
-
   listar():Observable<Vehiculo[]>{
     return this.http.get<Vehiculo[]>(this.urlEndPoint,{headers:this.httpHeaders});
   }
