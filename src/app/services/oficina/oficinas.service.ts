@@ -18,7 +18,7 @@ export class OficinasService {
     this.httpHeaders = this.httpHeaders.append("Authorization", 'Bearer ' + this.oaut.token)
   }
 
-  listar():Observable<Oficinas[]>{
+  listar(): Observable<Oficinas[]> {
     return this.http.get<Oficinas[]>(this.urlEndPoint);
   }
   ver(id: number): Observable<Oficinas> {
@@ -36,11 +36,11 @@ export class OficinasService {
   eliminar(id: number): Observable<Oficinas> {
     return this.http.delete<Oficinas>(`${this.urlEndPoint}/${id}`, { headers: this.httpHeaders });
   }
-  listarPorPagina(page:string,size:string):Observable<any>{
-    const params =new HttpParams()
-    .set('page',page)
-    .set('size',size);
+  listarPorPagina(page: string, size: string): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
 
-    return this.http.get<any>(`${this.urlEndPoint}/pagina`,{params:params}) 
+    return this.http.get<any>(`${this.urlEndPoint}/pagina`, { params: params ,headers:this.httpHeaders})
   }
 }
