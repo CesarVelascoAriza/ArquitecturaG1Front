@@ -58,5 +58,4 @@ export class OficinasComponent implements OnInit {
     this.totalPorPagina= event.pageSize;
     this.calcularRangos();
   }
-
 }
