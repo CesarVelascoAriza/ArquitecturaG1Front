@@ -46,6 +46,7 @@ export class VehiculoComponent implements OnInit {
 
     })
   }
+
   private calcularRangos() {
     this.servicio.listarPorPagina(this.paginaActual.toString(),this.totalPorPagina.toString()).subscribe(p=>{
       this.listaVehiculos=p.content as Vehiculo[]
