@@ -1,11 +1,11 @@
-<div class="card" >
+<div class="card m-3" >
     <div class="card-header text-center">
         Envios
     </div>
     <div class="card-body">
         <h5 class="card-title">Listado de envios</h5>
         <div class="text-end">
-            <button type="button" class="btn btn-primary" routerLink="/empleado/envios/form" >Crear Envios</button>
+            <button type="button" class="btn btn-outline-info" routerLink="/empleado/envios/form" >Crear Envios</button>
         </div>
         <table class="table">
             <thead>
@@ -17,7 +17,9 @@
                     <th scope="col">Usuario Que Recibe</th>
                     <th scope="col">Origen</th>
                     <th scope="col">Destino</th>
+                    <th scope="col">Estado</th>
                     <th scope="col" >Editar</th>
+                    <th scope="col" >Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +31,9 @@
                     <td>{{envio.usuarioReceptor.numeroDocumento}} {{envio.usuarioReceptor.nombre}}</td>
                     <td>{{envio.ciudadOrigen.ciudad}}</td>
                     <td>{{envio.ciudadDestino.ciudad}}</td>
-                    <td> <div class="btn btn-outline-success" [routerLink]="['/empleado/envios/form',envio.id]"><i class="bi bi-pen"></i></div></td>
+                    <td>{{envio.estado.estado}}</td>
+                    <td><button [disabled]="envio.estado.id==9" class="btn btn-outline-success btn-sm" [routerLink]="['/empleado/envios/form',envio.id]" ><i class="bi bi-pen">Editar</i></button></td>
+                    <td><button class="btn btn-danger btn-sm" (click)="eliminar(envio)"><i class="bi bi-trash-fill">Eliminar</i></button></td>
                 </tr>
             </tbody>
         </table>

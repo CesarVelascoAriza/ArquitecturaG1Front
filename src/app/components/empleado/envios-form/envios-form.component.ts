@@ -23,51 +23,60 @@ export class EnviosFormComponent implements OnInit {
   titulo: string = "Crear Envios";
   envio: Envios = new Envios();
   tipoDoc: TipoDocumento[] = [];
-  estado:Estado[]=[];
-  ciudades:Ciudad[]=[];
-  rol:Roles= new Roles();
+  estados: Estado[] = [];
+  ciudades: Ciudad[] = [];
+  rol: Roles = new Roles();
 
   constructor(
     private serviceTipo: TiposDocumentosService,
     private servicEnvio: EnvioService,
-    private servicioEstado:EstadoService,
-    private servicioCiudad:CiudadService,
-    private serviTari:TarifaService,
-    private router:Router,
-    private route:ActivatedRoute
+    private servicioEstado: EstadoService,
+    private servicioCiudad: CiudadService,
+    private serviTari: TarifaService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.editar();
     this.serviceTipo.listar().subscribe(data => this.tipoDoc = data);
-    this.servicioCiudad.listar().subscribe(data => this.ciudades=data)
+    this.servicioCiudad.listar().subscribe(data => this.ciudades = data);
+    this.servicioEstado.listar().subscribe(data => this.estados = data)
   }
- 
+
   onSubmit(): void {
-    
-    this.envio.estado.id=8;
-    this.rol.id=1;
+
+    this.envio.estado.id = 8;
+    this.rol.id = 1;
     this.envio.usuarioEmisor.roles.push(this.rol);
     this.envio.usuarioReceptor.roles.push(this.rol);
     console.log(this.envio)
-    this.servicEnvio.crear(this.envio).subscribe(data=>{
+    this.servicEnvio.crear(this.envio).subscribe(data => {
       Swal.fire('Nuevo:', `envio creado ${data.id} con exito! `, 'success');
-        this.router.navigate(['/empleado']);
+      this.router.navigate(['/empleado']);
     });
   }
-  editar():void{
-    this.route.params.subscribe(params=>{
+  editar(): void {
+    this.route.params.subscribe(params => {
       let id = params['id'];
-      if(id!=undefined){
-        this.titulo="Editar envio";
-        this.servicEnvio.ver(id).subscribe((envio)=> this.envio= envio);
+      if (id != undefined) {
+        this.titulo = "Editar envio";
+        this.servicEnvio.ver(id).subscribe((envio) => this.envio = envio);
       }
     })
   }
-  calcularPeso():void{
+  calcularPeso(): void {
     console.log("pruebas");
-    this.serviTari.obtenerValorTarifas(Number(this.envio.peso)).subscribe((tarfifa)=>{
-      this.envio.precio=tarfifa.precio;
+    this.serviTari.obtenerValorTarifas(Number(this.envio.peso)).subscribe((tarfifa) => {
+      this.envio.precio = tarfifa.precio;
     })
+  }
+  actualizar(): void {
+    this.servicEnvio.actualizar(this.envio).subscribe({
+      next: (v) => {
+        Swal.fire('Actualizado:', `envio actualizado ${v.id} con exito! `, 'success');
+        this.router.navigate(['/empleado']);
       }
+    });
+  }
 }

@@ -3,44 +3,42 @@
         <h5>Consulte su envio</h5>
     </div>
     <div class="card-body">
-        <form [formGroup]="formB" (ngSubmit)="onSubmit()">
+        <form [formGroup]="formB" >
             <div class="d-grid gap-2 col-6 mx-auto">
                 <input type="search" class="form-control me-2" placeholder="Buscar por id envio" aria-label="Search"
                     name="idEnvio" id="idENvio" formControlName="id">
 
-                <button class="btn btn-primary" type="button" [disabled]="!formB.valid">Button</button>
+                <button (click)="onSubmit()" class="btn btn-primary" type="button" [disabled]="!formB.valid">Consultar</button>
             </div>
         </form>
         <div class="m-3" *ngIf="envio.id !== 0 ">
+            
             <div>
-                <label>{{envio.id}}</label>
+                <label>Fecha Creacion del Envio :{{envio.fechaCreacion| date:'yyyy-MM-dd'}}</label>
             </div>
             <div>
-                <label>{{envio.fechaCreacion}}</label>
+                <label>Descripcion : {{envio.descripcionEnvio}}</label>
             </div>
             <div>
-                <label>{{envio.descripcionEnvio}}</label>
+                <label>Nombre Emisor: {{envio.usuarioEmisor.nombre}}</label>
             </div>
             <div>
-                <label>{{envio.usuarioEmisor.nombre}}</label>
+                <label>Usuarios Emisor: {{envio.usuarioEmisor.apellido}}</label>
             </div>
             <div>
-                <label>{{envio.usuarioEmisor.apellido}}</label>
+                <label>Nombre Receptor :{{envio.usuarioReceptor.nombre}}</label>
             </div>
             <div>
-                <label>{{envio.usuarioReceptor.nombre}}</label>
+                <label>Apellido Receptor: {{envio.usuarioReceptor.apellido}}</label>
             </div>
             <div>
-                <label>{{envio.usuarioReceptor.apellido}}</label>
+                <label>Precion: {{envio.precio}}</label>
             </div>
             <div>
-                <label>{{envio.precio}}</label>
+                <label>Peso :{{envio.peso}}</label>
             </div>
             <div>
-                <label>{{envio.peso}}</label>
-            </div>
-            <div>
-                <label>{{envio.estado.estado}}</label>
+                <label>Estado del Envio: {{envio.estado.estado}}</label>
             </div>
         </div>
     </div>
